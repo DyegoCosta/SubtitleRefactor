@@ -26,3 +26,17 @@ G:\Projetos\SubRefactor\SubRefactor.Web.Tests\bin\Debug\SyncSub.pdb
 G:\Projetos\SubRefactor\SubRefactor.Web.Tests\bin\Debug\SyncSub.Library.pdb
 G:\Projetos\SubRefactor\SubRefactor.Web.Tests\bin\Debug\SyncSub.Model.pdb
 G:\Projetos\SubRefactor\SubRefactor.Web.Tests\bin\Debug\SyncSub.Services.pdb
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Web.Tests\bin\Debug\SyncSub.Tests.dll.config
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Web.Tests\bin\Debug\SyncSub.Tests.dll
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Web.Tests\bin\Debug\SyncSub.Tests.pdb
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Web.Tests\bin\Debug\SyncSub.dll
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Web.Tests\bin\Debug\SyncSub.Library.dll
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Web.Tests\bin\Debug\SyncSub.Model.dll
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Web.Tests\bin\Debug\SyncSub.Services.dll
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Web.Tests\bin\Debug\SyncSub.pdb
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Web.Tests\bin\Debug\SyncSub.Library.pdb
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Web.Tests\bin\Debug\SyncSub.Model.pdb
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Web.Tests\bin\Debug\SyncSub.Services.pdb
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Web.Tests\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Web.Tests\obj\Debug\SyncSub.Tests.dll
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Web.Tests\obj\Debug\SyncSub.Tests.pdb
