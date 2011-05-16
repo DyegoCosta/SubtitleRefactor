@@ -13,8 +13,3 @@ G:\Projetos\SubRefactor\SubRefactor.Services\bin\Debug\SyncSub.Services.pdb
 G:\Projetos\SubRefactor\SubRefactor.Services\obj\Debug\ResolveAssemblyReference.cache
 G:\Projetos\SubRefactor\SubRefactor.Services\obj\Debug\SyncSub.Services.dll
 G:\Projetos\SubRefactor\SubRefactor.Services\obj\Debug\SyncSub.Services.pdb
-C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Services\bin\Debug\SyncSub.Services.dll
-C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Services\bin\Debug\SyncSub.Services.pdb
-C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Services\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Services\obj\Debug\SyncSub.Services.dll
-C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Services\obj\Debug\SyncSub.Services.pdb
