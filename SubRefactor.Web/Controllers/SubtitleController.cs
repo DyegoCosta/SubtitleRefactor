@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using SubRefactor.Library;
 using SubRefactor.Models;
 using SubRefactor.Library.Languages;
+using System.Collections;
 
 namespace SubRefactor.Controllers
 {
@@ -76,8 +77,8 @@ namespace SubRefactor.Controllers
         {
             #region ViewBags
 
-            ViewBag.Languages = new MicrosoftServiceLanguages().GetLanguages();
-            ViewBag.Translators = new List<Translators>() { Translators.Microsoft, Translators.Google };
+            ViewBag.Languages = new ServicesLanguages().GetBingLanguages();
+            ViewBag.Translators = new List<Translators>() { Translators.Bing, Translators.Google };
 
             #endregion
 
@@ -91,9 +92,14 @@ namespace SubRefactor.Controllers
         public ActionResult Translate(SubtitleTranslationViewModel subtitleTranslationViewModel)
         {
             #region ViewBags
-            
-            ViewBag.Languages = new MicrosoftServiceLanguages().GetLanguages();
-            ViewBag.Translators = new List<Translators>() { Translators.Microsoft, Translators.Google };
+
+            ViewBag.Languages = subtitleTranslationViewModel.Translator == Translators.Bing ?
+                                                                            new ServicesLanguages().GetBingLanguages() :
+                                                                            new ServicesLanguages().GetGoogleLanguages();
+            ViewBag.Translators = new List<Translators>() { 
+                                        Translators.Bing,
+                                        Translators.Google
+                                      };
 
             #endregion
 
@@ -141,5 +147,22 @@ namespace SubRefactor.Controllers
 
             return View();
         }
+
+        #region Ajax
+
+        [OutputCache(Duration = 0, VaryByParam = "None")]
+        public ActionResult ListLanguagesByTranslator(string id)
+        {
+            IEnumerable languages = new Dictionary<string, string>();
+
+            if (id == "Bing")
+                languages = new ServicesLanguages().GetBingLanguages();
+            if (id == "Google")
+                languages = new ServicesLanguages().GetGoogleLanguages();
+
+            return Json(languages, JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
     }
 }

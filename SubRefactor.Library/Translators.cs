@@ -7,7 +7,7 @@ namespace SubRefactor.Library
 {
     public enum Translators
     {
-        Microsoft,
+        Bing,
         Google
     }
 }

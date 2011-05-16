@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Languages\MicrosoftServiceLanguages.cs" />
+    <Compile Include="Languages\ServicesLanguages.cs" />
     <Compile Include="SubtitleHandler.cs" />
     <Compile Include="Translators.cs" />
     <Compile Include="Infrastructure\Extensions.cs" />
@@ -63,6 +63,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

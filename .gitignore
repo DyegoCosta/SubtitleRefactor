@@ -1,12 +1,7 @@
-SubRefactor.Web.Tests/bin
 SubRefactor.Web.Tests/obj
-SubRefactor.Library.Tests/bin
 SubRefactor.Library.Tests/obj
-SubRefactor.Web/bin
 SubRefactor.Web/obj
-SubRefactor.Library/bin
 SubRefactor.Library/obj
-SubRefactor.Services/bin
 SubRefactor.Services/obj
 SubRefactor.suo
 SubRefactor.sln.docstates
