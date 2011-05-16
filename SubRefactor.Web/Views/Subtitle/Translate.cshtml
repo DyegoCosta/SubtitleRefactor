@@ -1,0 +1,31 @@
+﻿@model SubRefactor.Models.SubtitleTranslationViewModel
+@{
+    ViewBag.Title = "Translation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<fieldset>
+    <legend>Subtitle</legend>
+    @using (Html.BeginForm("Translate", "Subtitle", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    { 
+        <p>
+            @Html.Label("Subtitle: ")<input type="file" id="File" name="File" />
+            @Html.ValidationMessageFor(model => model.File)
+        </p>
+        <p>
+            @Html.Label("From: ") @Html.DropDownListFor(m => m.FromLanguage, new SelectList(ViewBag.Languages, "Value", "Key"), "(Select)", new { id = "FromLanguage" })
+            @Html.ValidationMessageFor(model => model.FromLanguage)
+        </p>
+        <p>
+            @Html.Label("To: ") @Html.DropDownListFor(m => m.ToLanguage, new SelectList(ViewBag.Languages, "Value", "Key"), "(Select)", new { id = "ToLanguage" })
+            @Html.ValidationMessageFor(model => model.ToLanguage)
+        </p>        
+        <p>
+            @Html.Label("Translator: ") @Html.DropDownListFor(m => m.Translator, new SelectList(ViewBag.Translators))
+        </p>
+        <p>
+            <input type="submit" value="Translate" />
+        </p>
+    }
+</fieldset>

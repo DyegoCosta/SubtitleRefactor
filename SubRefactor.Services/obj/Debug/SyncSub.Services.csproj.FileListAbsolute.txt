@@ -1,0 +1,5 @@
+E:\Projetos\SyncSub\SyncSub.Services\bin\Debug\SyncSub.Services.dll
+E:\Projetos\SyncSub\SyncSub.Services\bin\Debug\SyncSub.Services.pdb
+E:\Projetos\SyncSub\SyncSub.Services\obj\Debug\ResolveAssemblyReference.cache
+E:\Projetos\SyncSub\SyncSub.Services\obj\Debug\SyncSub.Services.dll
+E:\Projetos\SyncSub\SyncSub.Services\obj\Debug\SyncSub.Services.pdb

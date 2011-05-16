@@ -1,0 +1,10 @@
+C:\Users\Dyego\Projetos\SyncSub\SyncSub.Model\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Dyego\Projetos\SyncSub\SyncSub.Model\bin\Debug\SyncSub.Model.dll
+C:\Users\Dyego\Projetos\SyncSub\SyncSub.Model\bin\Debug\SyncSub.Model.pdb
+C:\Users\Dyego\Projetos\SyncSub\SyncSub.Model\obj\Debug\SyncSub.Model.dll
+C:\Users\Dyego\Projetos\SyncSub\SyncSub.Model\obj\Debug\SyncSub.Model.pdb
+E:\Projetos\SyncSub\SyncSub.Model\bin\Debug\SyncSub.Model.dll
+E:\Projetos\SyncSub\SyncSub.Model\bin\Debug\SyncSub.Model.pdb
+E:\Projetos\SyncSub\SyncSub.Model\obj\Debug\ResolveAssemblyReference.cache
+E:\Projetos\SyncSub\SyncSub.Model\obj\Debug\SyncSub.Model.dll
+E:\Projetos\SyncSub\SyncSub.Model\obj\Debug\SyncSub.Model.pdb
