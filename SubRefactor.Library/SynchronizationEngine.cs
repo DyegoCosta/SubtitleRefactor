@@ -14,10 +14,8 @@ namespace SubRefactor.Library
         /// <param name="delay">TimeSpan chosen by the user</param>
         /// <param name="newSubtitleName">The new subtitle name chosen by the user</param>
         /// <returns>The new subtitle synchronized stream</returns>
-        public IList<Quote> SyncSubtitle(Stream subtitle, TimeSpan delay, bool negativeDelay)
+        public IList<Quote> SyncSubtitle(IList<Quote> quotes, TimeSpan delay, bool negativeDelay)
         {
-            var quotes = new SubtitleHandler().ReadSubtitle(subtitle);
-
             foreach (var quote in quotes)
             {
                 if (negativeDelay)

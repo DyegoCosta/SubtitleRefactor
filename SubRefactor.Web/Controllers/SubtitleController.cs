@@ -48,10 +48,12 @@ namespace SubRefactor.Controllers
             dynamic delay = subtitleSynchronizationViewModel.Delay;
             bool negativeDelay = ((int)(delay)).IsNegative();
             delay = TimeSpan.FromMilliseconds(delay);
-            
+
+            var quotes = new SubtitleHandler().ReadSubtitle(subtitleSynchronizationViewModel.File.InputStream);
+
             var synchronizedQuotes = 
                 new SynchronizationEngine().SyncSubtitle(
-                                                subtitleSynchronizationViewModel.File.InputStream,
+                                                quotes,
                                                 delay,
                                                 negativeDelay
                                              );

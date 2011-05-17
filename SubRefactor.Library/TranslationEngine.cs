@@ -14,7 +14,7 @@ namespace SubRefactor.Library
                     return new MicrosoftTranslatorService().Translate(BingApiId, text, from, to, "text/html", "general");
                     
                 case Translators.Google:
-                    return new GoogleTranslatorService().Translate(GoogleApiId, text, from, to);
+                    return new GoogleTranslatorService().Translate(text, from, to);
                     
                 default:
                     return "";

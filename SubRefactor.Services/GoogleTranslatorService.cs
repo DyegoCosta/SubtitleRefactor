@@ -9,7 +9,7 @@ namespace SubRefactor.Services
 {
     public class GoogleTranslatorService
     {
-        public string Translate(string GoogleApiId, string text, string from, string to)
+        public string Translate(string text, string from, string to)
         {
             return new TranslateClient("http://localhost/").Translate(text, from, to);
         }

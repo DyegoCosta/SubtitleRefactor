@@ -8,7 +8,7 @@ namespace SubRefactor.Library.Languages
 {
     public class ServicesLanguages
     {
-        public IEnumerable GetBingLanguages()
+        public IList GetBingLanguages()
         {
             var languages = new Dictionary<string, string>();
 
@@ -50,7 +50,7 @@ namespace SubRefactor.Library.Languages
             return languages.ToList();
         }
 
-        public IEnumerable GetGoogleLanguages()
+        public IList GetGoogleLanguages()
         {
             var languages = new Dictionary<string, string>();
 

@@ -58,6 +58,12 @@ namespace SubRefactor.Library
             return quotes;
         }
 
+        /// <summary>
+        /// Return the subtitle as a Stream
+        /// </summary>
+        /// <param name="quotes">Lsit of quotes of the subtitle</param>
+        /// <param name="newSubtitleName">A new name for the subtitle</param>
+        /// <returns>Subtitle.srt</returns>
         public Stream WriteSubtitle(IList<Quote> quotes, string newSubtitleName)
         {
             using (StreamWriter sw = new StreamWriter(string.Format("C:/Temp/{0}", newSubtitleName)))

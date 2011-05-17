@@ -30,3 +30,15 @@ G:\Projetos\SubRefactor\SubRefactor.Library\bin\Debug\SyncSub.Services.dll
 G:\Projetos\SubRefactor\SubRefactor.Library\bin\Debug\GoogleTranslateAPI.dll
 G:\Projetos\SubRefactor\SubRefactor.Library\bin\Debug\SyncSub.Services.pdb
 G:\Projetos\SubRefactor\SubRefactor.Library\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Library\bin\Debug\SyncSub.Library.dll.config
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Library\bin\Debug\SyncSub.Library.dll
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Library\bin\Debug\SyncSub.Library.pdb
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Library\bin\Debug\SyncSub.Model.dll
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Library\bin\Debug\SyncSub.Services.dll
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Library\bin\Debug\GoogleTranslateAPI.dll
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Library\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Library\bin\Debug\SyncSub.Model.pdb
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Library\bin\Debug\SyncSub.Services.pdb
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Library\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Library\obj\Debug\SyncSub.Library.dll
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Library\obj\Debug\SyncSub.Library.pdb
