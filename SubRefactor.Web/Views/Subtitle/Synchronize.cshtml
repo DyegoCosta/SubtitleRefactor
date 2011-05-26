@@ -17,15 +17,12 @@
             }
         });
         $("#Delay").val($("#slider-range-min").slider("value"));
-        $("#Delay").change(function() {
+        $("#Delay").change(function () {
             $("#slider-range-min").slider("value", this.value)
-            });
+        });
     });
-</script>
-<h2>
-    Synchronization</h2>
-<fieldset>
-    <legend>Subtitle</legend>
+</script>s
+<div class="content">
     @using (Html.BeginForm("Synchronize", "Subtitle", FormMethod.Post, new { enctype = "multipart/form-data" }))
     { 
         <p>
@@ -42,4 +39,4 @@
             <input type="submit" value="Syncronize" />
         </p>
     }
-</fieldset>
+</div>

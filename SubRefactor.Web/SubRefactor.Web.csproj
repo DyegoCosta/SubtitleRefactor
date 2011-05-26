@@ -68,6 +68,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\themes\base\images\bigger-banner.png" />
+    <Content Include="Content\themes\base\images\edit-button-icon.png" />
+    <Content Include="Content\themes\base\images\sync-button-icon.png" />
+    <Content Include="Content\themes\base\images\translate-button-icon.png" />
     <Content Include="Content\themes\redmond\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\redmond\images\ui-bg_flat_55_fbec88_40x100.png" />
     <Content Include="Content\themes\redmond\images\ui-bg_glass_75_d0e5f5_1x400.png" />
