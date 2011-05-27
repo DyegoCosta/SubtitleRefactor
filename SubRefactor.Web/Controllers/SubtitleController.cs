@@ -150,6 +150,15 @@ namespace SubRefactor.Controllers
             return View();
         }
 
+        //
+        // GET: /Subtitle/Edit
+
+        [HttpGet]
+        public ActionResult Edit()
+        {
+            return View();
+        }
+
         #region Ajax
 
         [OutputCache(Duration = 0, VaryByParam = "None")]

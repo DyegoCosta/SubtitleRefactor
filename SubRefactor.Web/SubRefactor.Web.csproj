@@ -68,6 +68,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\themes\base\images\banner-mini.png" />
     <Content Include="Content\themes\base\images\bigger-banner.png" />
     <Content Include="Content\themes\base\images\edit-button-icon.png" />
     <Content Include="Content\themes\base\images\sync-button-icon.png" />
@@ -141,6 +142,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Subtitle\Translate.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Helpers\EditQuoteHelper.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

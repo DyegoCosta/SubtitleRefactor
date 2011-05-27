@@ -153,6 +153,12 @@ h5, h6
 /* 
 ----------------------------------------------------------*/
 
+fieldset
+{
+    padding:20px;
+    background-color:#DFE1F1;
+}
+
 .bigger-banner
 {
     background: url("../../Content/themes/base/images/bigger-banner.png");
@@ -161,6 +167,20 @@ h5, h6
     background-color: #93B4D5;
     height: 570px;
 }
+
+.banner
+{   
+    background: url("../../Content/themes/base/images/banner-mini.png"); 
+    background-repeat: no-repeat;    
+    background-position: left;
+    background-color: #93B4D5;    
+    height: 150px;
+}
+
+.page-banner
+{
+    
+} 
 
 .menu
 {
