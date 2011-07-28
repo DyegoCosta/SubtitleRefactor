@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using SubRefactor.Domain;
+using System.Text;
 
 namespace SubRefactor.Library
 {
@@ -19,7 +20,7 @@ namespace SubRefactor.Library
             string line;
             IList<string> lines = new List<string>();
 
-            using (var sr = new StreamReader(subtitle, new System.Text.UTF7Encoding()))
+            using (var sr = new StreamReader(subtitle, Encoding.Default))
             {
                 while ((line = sr.ReadLine()) != null)
                 {
@@ -66,7 +67,7 @@ namespace SubRefactor.Library
         /// <returns>Subtitle.srt</returns>
         public Stream WriteSubtitle(IList<Quote> quotes, string newSubtitleName)
         {
-            using (StreamWriter sw = new StreamWriter(string.Format("C:/Temp/{0}", newSubtitleName)))
+            using (StreamWriter sw = new StreamWriter(string.Format("C:/Temp/{0}", newSubtitleName), false, Encoding.Default))
             {
                 foreach (var quoteInfo in quotes)
                 {
