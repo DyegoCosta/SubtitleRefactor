@@ -20,13 +20,13 @@ namespace SubRefactor.Library
             {
                 if (negativeDelay)
                 {
-                    quote.BeginTimeLine = TimeSpan.Parse(quote.BeginTimeLine).Subtract(delay).ToString();
-                    quote.EndTimeLine = TimeSpan.Parse(quote.EndTimeLine).Subtract(delay).ToString();
+                    quote.BeginTimeLine = TimeSpan.Parse(quote.BeginTimeLine).Subtract(delay).ToString(@"hh\:mm\:ss\,fff");
+                    quote.EndTimeLine = TimeSpan.Parse(quote.EndTimeLine).Subtract(delay).ToString(@"hh\:mm\:ss\,fff");
                 }
                 else
                 {
-                    quote.BeginTimeLine = TimeSpan.Parse(quote.BeginTimeLine).Add(delay).ToString();
-                    quote.EndTimeLine = TimeSpan.Parse(quote.EndTimeLine).Add(delay).ToString();
+                    quote.BeginTimeLine = TimeSpan.Parse(quote.BeginTimeLine).Add(delay).ToString(@"hh\:mm\:ss\,fff");
+                    quote.EndTimeLine = TimeSpan.Parse(quote.EndTimeLine).Add(delay).ToString(@"hh\:mm\:ss\,fff");
                 }
             }
 
