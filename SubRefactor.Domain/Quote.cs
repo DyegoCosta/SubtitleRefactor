@@ -8,11 +8,11 @@ namespace SubRefactor.Domain
     public class Quote
     {
         #region Properties
-        
-        public string Index;
-        public string BeginTimeLine;
-        public string EndTimeLine;
-        public string QuoteLine;
+
+        public string Index { get; set; }
+        public string BeginTimeLine { get; set; }
+        public string EndTimeLine { get; set; }
+        public string QuoteLine { get; set; }
         
         #endregion
 
