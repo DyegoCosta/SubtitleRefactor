@@ -1,5 +1,0 @@
-<Modules>
-  <Module PersistentId="20883B0C-6DE3-4D31-9820-119D1B175850" ModuleId="SubRefactor.Library.Tests" />
-  <Module PersistentId="5A8D6F0C-3D01-4440-86BD-1ACFC9591E9D" ModuleId="SubRefactor.Domain" />
-  <Module PersistentId="46E55FC5-9723-4C8D-9F84-EB4871E4CBAB" ModuleId="SubRefactor.Library" />
-</Modules>

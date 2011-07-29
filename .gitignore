@@ -1,21 +1,36 @@
 SubRefactor.Domain/obj
+
 SubRefactor.Domain/bin
 
+
 SubRefactor.Library/obj
+
 SubRefactor.Library/bin
 
+
 SubRefactor.Library.Test/obj
+
 SubRefactor.Library.Test/bin
 
+
 SubRefactor.Services/obj
+
 SubRefactor.Services/bin
 
+
 SubRefactor.Web/obj
+
 SubRefactor.Web/bin
 
+
 SubRefactor.Web.Tests/obj
+
 SubRefactor.Web.Tests/bin
 
+
 SubRefactor.suo
+
 SubRefactor.sln.docstates
+
 TestResults
+_ReSharper.SubRefactor
