@@ -6,6 +6,7 @@ using SubRefactor.Library;
 using SubRefactor.Models;
 using SubRefactor.Library.Languages;
 using System.Collections;
+using SubRefactor.Domain;
 
 namespace SubRefactor.Controllers
 {
@@ -46,17 +47,19 @@ namespace SubRefactor.Controllers
             #endregion
 
             dynamic delay = subtitleSynchronizationViewModel.Delay;
-            bool negativeDelay = ((int)(delay)).IsNegative();
             delay = TimeSpan.FromMilliseconds(delay);
 
             var quotes = new SubtitleHandler().ReadSubtitle(subtitleSynchronizationViewModel.File.InputStream);
-
-            var synchronizedQuotes =
-                new SynchronizationEngine().SyncSubtitle(
-                                                quotes,
-                                                delay,
-                                                negativeDelay
-                                             );
+            IList<Quote> synchronizedQuotes = null;
+            try
+            {
+                synchronizedQuotes = new SynchronizationEngine().SyncSubtitle(quotes, delay);
+            }
+            catch (InvalidOperationException ex)
+            {
+                ModelState.AddModelError("Delay", ex.Message);
+                return this.View(subtitleSynchronizationViewModel);
+            }
 
             MemoryStream stream = new SubtitleHandler().WriteSubtitle(synchronizedQuotes);
             return this.File(stream.GetBuffer(), "text/plain", subtitleSynchronizationViewModel.File.FileName);
