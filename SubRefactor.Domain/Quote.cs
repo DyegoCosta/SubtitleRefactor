@@ -9,24 +9,35 @@ namespace SubRefactor.Domain
     {
         #region Properties
 
-        public string Index { get; set; }
-        public string BeginTimeLine { get; set; }
-        public string EndTimeLine { get; set; }
+        public int Index { get; set; }
+        public TimeSpan BeginTimeLine { get; set; }
+        public TimeSpan EndTimeLine { get; set; }
         public string QuoteLine { get; set; }
-        
+
         #endregion
 
-        public Quote(string index, string beginTimeLine, string endTimeLine, string quote)
+        public Quote(int index, TimeSpan beginTimeLine, TimeSpan endTimeLine, string quote)
         {
             this.Index = index;
             this.BeginTimeLine = beginTimeLine;
             this.EndTimeLine = endTimeLine;
-            this.QuoteLine = quote;   
+            this.QuoteLine = quote;
         }
 
         public Quote()
         {
 
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sbQuote = new StringBuilder();
+            sbQuote.AppendLine(this.Index.ToString());
+            sbQuote.AppendFormat("{0} --> {1}", this.BeginTimeLine.ToString(@"hh\:mm\:ss\,fff"), this.EndTimeLine.ToString(@"hh\:mm\:ss\,fff"));
+            sbQuote.AppendLine();
+            sbQuote.Append(this.QuoteLine);
+
+            return sbQuote.ToString();
         }
     }
 }
