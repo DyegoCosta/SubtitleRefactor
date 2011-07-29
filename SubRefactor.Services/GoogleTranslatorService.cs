@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Google.API.Translate;
-using Newtonsoft.Json;
+﻿using Google.API.Translate;
 
 namespace SubRefactor.Services
 {

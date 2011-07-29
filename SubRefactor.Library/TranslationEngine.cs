@@ -11,7 +11,7 @@ namespace SubRefactor.Library
             switch (api)
             {
                 case Translators.Bing:
-                    return new MicrosoftTranslatorService().Translate(BingApiId, text, from, to, "text/html", "general");
+                    return new MicrosoftTranslatorProxy().Translate(BingApiId, text, from, to, "text/html", "general");
                     
                 case Translators.Google:
                     return new GoogleTranslatorService().Translate(text, from, to);

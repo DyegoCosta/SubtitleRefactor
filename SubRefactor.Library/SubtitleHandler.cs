@@ -20,46 +20,45 @@ namespace SubRefactor.Library
             string allText;
             IList<Quote> quotes = new List<Quote>();
 
-            using (StreamReader sr = new StreamReader(subtitle, Encoding.Default))
+            using (var sr = new StreamReader(subtitle, Encoding.Default))
                 allText = sr.ReadToEnd();
 
-            /* 1 ^\d+$
-             * 00:08:45,300 --> 00:08:46,038 ^([0-9]{2}:){2}[0-9]{2},[0-9]{3}\s-->\s([0-9]{2}:){2}[0-9]{2},[0-9]{3}\s*$
-             */
-            Regex indexRegex = new Regex(@"^\d+$");
-            Regex timeRegex = new Regex(@"^([0-9]{2}:){2}[0-9]{2},[0-9]{3}\s-->\s([0-9]{2}:){2}[0-9]{2},[0-9]{3}\s*$");
-            Regex integerRegex = new Regex(@"\d+");
+            var indexRegex = new Regex(@"^\d+$");
+            var timeRegex = new Regex(@"^([0-9]{2}:){2}[0-9]{2},[0-9]{3}\s-->\s([0-9]{2}:){2}[0-9]{2},[0-9]{3}\s*$");
+            var integerRegex = new Regex(@"\d+");
 
-            string[] quoteLines = Regex.Split(allText, Environment.NewLine + Environment.NewLine);
-            foreach (string quoteLine in quoteLines)
+            var quoteLines = Regex.Split(allText, Environment.NewLine + Environment.NewLine);
+
+            foreach(var quoteLine in quoteLines)
             {
                 if (string.IsNullOrEmpty(quoteLine))
                     continue;
 
-                Quote quote = new Quote();
+                var quote = new Quote();
 
-                string[] lines = Regex.Split(quoteLine, Environment.NewLine);
-                foreach (string line in lines)
+                var lines = Regex.Split(quoteLine, Environment.NewLine);
+
+                foreach (var line in lines)
                 {
                     if (indexRegex.IsMatch(line))
-                    {
                         quote.Index = Convert.ToInt32(line);
-                    }
                     else if (timeRegex.IsMatch(line))
                     {
-                        MatchCollection matches = integerRegex.Matches(line);
+                        var matches = integerRegex.Matches(line);
                         if (matches.Count != 8)
                             throw new Exception("The selected file is invalid");
 
-                        quote.BeginTimeLine = new TimeSpan(0, Convert.ToInt32(matches[0].Value), Convert.ToInt32(matches[1].Value),
-                            Convert.ToInt32(matches[2].Value), Convert.ToInt32(matches[3].Value));
-                        quote.EndTimeLine = new TimeSpan(0, Convert.ToInt32(matches[4].Value), Convert.ToInt32(matches[5].Value),
-                            Convert.ToInt32(matches[6].Value), Convert.ToInt32(matches[7].Value));
+                        quote.BeginTimeLine = new TimeSpan(0, Convert.ToInt32(matches[0].Value),
+                                                           Convert.ToInt32(matches[1].Value),
+                                                           Convert.ToInt32(matches[2].Value),
+                                                           Convert.ToInt32(matches[3].Value));
+                        quote.EndTimeLine = new TimeSpan(0, Convert.ToInt32(matches[4].Value),
+                                                         Convert.ToInt32(matches[5].Value),
+                                                         Convert.ToInt32(matches[6].Value),
+                                                         Convert.ToInt32(matches[7].Value));
                     }
                     else
-                    {
                         quote.QuoteLine = line;
-                    }
                 }
 
                 quotes.Add(quote);
@@ -72,17 +71,16 @@ namespace SubRefactor.Library
         /// Return the subtitle as a Stream
         /// </summary>
         /// <param name="quotes">Lsit of quotes of the subtitle</param>
-        /// <param name="newSubtitleName">A new name for the subtitle</param>
         /// <returns>Subtitle.srt</returns>
         public MemoryStream WriteSubtitle(IList<Quote> quotes)
         {
-            MemoryStream ms = new MemoryStream();
+            var ms = new MemoryStream();
 
-            using (StreamWriter sw = new StreamWriter(ms, Encoding.Default))
+            using (var sw = new StreamWriter(ms, Encoding.Default))
             {
-                foreach (Quote quoteInfo in quotes.OrderBy(q => q.Index))
+                foreach (var quote in quotes.OrderBy(q => q.Index))
                 {
-                    sw.WriteLine(quoteInfo.ToString());
+                    sw.WriteLine(quote.ToString());
                     sw.WriteLine();
                 }
 

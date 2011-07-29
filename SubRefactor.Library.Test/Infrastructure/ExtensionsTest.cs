@@ -1,9 +1,5 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SubRefactor.Library;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SubRefactor.Library.Infrastructure;
 
 namespace SubRefactor.Library.Test.Infrastructure
 {
