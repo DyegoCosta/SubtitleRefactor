@@ -1,34 +1,21 @@
-src/SubRefactor.Domain/obj
-src/
+SubRefactor.Domain/obj
 SubRefactor.Domain/bin
 
-
-src/SubRefactor.Library/obj
-src/
+SubRefactor.Library/obj
 SubRefactor.Library/bin
 
-src/
-src/SubRefactor.Library.Test/obj
-src/
+SubRefactor.Library.Test/obj
 SubRefactor.Library.Test/bin
 
-
-src/SubRefactor.Services/obj
-src/
+SubRefactor.Services/obj
 SubRefactor.Services/bin
 
-
-src/SubRefactor.Web/obj
-src/
+SubRefactor.Web/obj
 SubRefactor.Web/bin
-src/
 
 SubRefactor.Web.Tests/obj
+SubRefactor.Web.Tests/bin
 
-src/SubRefactor.Web.Tests/bin
-
-
-src/SubRefactor.suo
-src/SubRefactor.sln.docstates
-src/
+SubRefactor.suo
+SubRefactor.sln.docstates
 TestResults
