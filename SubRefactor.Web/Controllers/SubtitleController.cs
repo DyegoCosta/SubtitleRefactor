@@ -51,24 +51,15 @@ namespace SubRefactor.Controllers
 
             var quotes = new SubtitleHandler().ReadSubtitle(subtitleSynchronizationViewModel.File.InputStream);
 
-            var synchronizedQuotes = 
+            var synchronizedQuotes =
                 new SynchronizationEngine().SyncSubtitle(
                                                 quotes,
                                                 delay,
                                                 negativeDelay
                                              );
 
-            string newSubtitleName = string.Format("{0}_Synchronized_{1}_{2}_{3}{4}",
-                                                    Path.GetFileNameWithoutExtension(subtitleSynchronizationViewModel.File.FileName),
-                                                    negativeDelay ? "decreased" : "increased",
-                                                    delay as string,
-                                                    DateTime.Now.TimeOfDay.ToString().Replace(':', '-'),
-                                                    Path.GetExtension(subtitleSynchronizationViewModel.File.FileName)
-                                                  );
-
-            new SubtitleHandler().WriteSubtitle(synchronizedQuotes, newSubtitleName);
-
-            return View();
+            MemoryStream stream = new SubtitleHandler().WriteSubtitle(synchronizedQuotes);
+            return this.File(stream.GetBuffer(), "text/plain", subtitleSynchronizationViewModel.File.FileName);
         }
 
         //
@@ -137,17 +128,8 @@ namespace SubRefactor.Controllers
                                                             subtitleTranslationViewModel.ToLanguage
                                                          );
 
-            string newSubtitleName = string.Format("{0}_Translated_{1}_{2}_{3}{4}",
-                                                    Path.GetFileNameWithoutExtension(subtitleTranslationViewModel.File.FileName),
-                                                    subtitleTranslationViewModel.FromLanguage,
-                                                    subtitleTranslationViewModel.ToLanguage,
-                                                    DateTime.Now.TimeOfDay.ToString().Replace(':', '-'),
-                                                    Path.GetExtension(subtitleTranslationViewModel.File.FileName)
-                                                  );
-
-            new SubtitleHandler().WriteSubtitle(quotes, newSubtitleName);            
-
-            return View();
+            MemoryStream stream = new SubtitleHandler().WriteSubtitle(quotes);
+            return this.File(stream.GetBuffer(), "text/plain", subtitleTranslationViewModel.File.FileName);
         }
 
         //
