@@ -12,37 +12,34 @@ namespace SubRefactor.Controllers
 {
     public class SubtitleController : Controller
     {
-        //
-        // GET: /Subtitle/Synchronization
-
         [HttpGet]
         public ActionResult Synchronize()
         {
-            return View();
+            return View("Synchronize");
         }
-
-        //
-        // POST: /Subtitle/Synchronization
 
         [HttpPost]
         public ActionResult Synchronize(SubtitleSynchronizationViewModel subtitleSynchronizationViewModel)
         {
             #region Validations
 
-            if (subtitleSynchronizationViewModel.File == null)
+            if (subtitleSynchronizationViewModel != null && subtitleSynchronizationViewModel.File == null)
                 ModelState.AddModelError("File", "A file is required.");
             else
             {
-                string extension = Path.GetExtension(subtitleSynchronizationViewModel.File.FileName);
-                if (extension != ".srt")
-                    ModelState.AddModelError("File", "The subtitle must be a .srt file");
+                if (subtitleSynchronizationViewModel != null)
+                {
+                    string extension = Path.GetExtension(subtitleSynchronizationViewModel.File.FileName);
+                    if (extension != ".srt")
+                        ModelState.AddModelError("File", "The subtitle must be a .srt file");
+                }
             }
 
-            if (subtitleSynchronizationViewModel.Delay == 0)
+            if (subtitleSynchronizationViewModel != null && subtitleSynchronizationViewModel.Delay == 0)
                 ModelState.AddModelError("Delay", "Must not be 0.");
 
             if (!ModelState.IsValid)
-                return View(subtitleSynchronizationViewModel);
+                return View("Synchronize", model: subtitleSynchronizationViewModel);
 
             #endregion
 
@@ -50,7 +47,8 @@ namespace SubRefactor.Controllers
             delay = TimeSpan.FromMilliseconds(delay);
 
             var quotes = new SubtitleHandler().ReadSubtitle(subtitleSynchronizationViewModel.File.InputStream);
-            IList<Quote> synchronizedQuotes = null;
+            IList<Quote> synchronizedQuotes;
+
             try
             {
                 synchronizedQuotes = new SynchronizationEngine().SyncSubtitle(quotes, delay);
@@ -58,15 +56,13 @@ namespace SubRefactor.Controllers
             catch (InvalidOperationException ex)
             {
                 ModelState.AddModelError("Delay", ex.Message);
-                return this.View(subtitleSynchronizationViewModel);
+                return View(subtitleSynchronizationViewModel);
             }
 
-            MemoryStream stream = new SubtitleHandler().WriteSubtitle(synchronizedQuotes);
+            var stream = new SubtitleHandler().WriteSubtitle(synchronizedQuotes);
+
             return this.File(stream.GetBuffer(), "text/plain", subtitleSynchronizationViewModel.File.FileName);
         }
-
-        //
-        // GET: /Subtitle/Translate
 
         [HttpGet]
         public ActionResult Translate()
@@ -78,11 +74,8 @@ namespace SubRefactor.Controllers
 
             #endregion
 
-            return View();
+            return View("Translate");
         }
-
-        //
-        // POST: /Subtitle/Translate
 
         [HttpPost]
         public ActionResult Translate(SubtitleTranslationViewModel subtitleTranslationViewModel)
@@ -104,11 +97,8 @@ namespace SubRefactor.Controllers
             if (subtitleTranslationViewModel.File == null)
                 ModelState.AddModelError("File", "A file is required.");
             else
-            {
-                string extension = Path.GetExtension(subtitleTranslationViewModel.File.FileName);
-                if (extension != ".srt")
+                if (Path.GetExtension(subtitleTranslationViewModel.File.FileName) != ".srt")
                     ModelState.AddModelError("File", "The subtitle must be a .srt file");
-            }
 
             if (string.IsNullOrEmpty(subtitleTranslationViewModel.FromLanguage))
                 ModelState.AddModelError("FromLanguage", "Select a language");
@@ -117,26 +107,23 @@ namespace SubRefactor.Controllers
                 ModelState.AddModelError("ToLanguage", "Select a language");
 
             if (!ModelState.IsValid)
-                return View(subtitleTranslationViewModel);
+                return View(viewName:"Translate", model: subtitleTranslationViewModel);
 
             #endregion
 
             var quotes = new SubtitleHandler().ReadSubtitle(subtitleTranslationViewModel.File.InputStream);
 
-            foreach (var item in quotes)
-                item.QuoteLine = new TranslationEngine().Translate(
+            foreach (var quote in quotes)
+                quote.QuoteLine = new TranslationEngine().Translate(
                                                             subtitleTranslationViewModel.Translator,
-                                                            item.QuoteLine,
+                                                            quote.QuoteLine,
                                                             subtitleTranslationViewModel.FromLanguage,
                                                             subtitleTranslationViewModel.ToLanguage
                                                          );
 
-            MemoryStream stream = new SubtitleHandler().WriteSubtitle(quotes);
-            return this.File(stream.GetBuffer(), "text/plain", subtitleTranslationViewModel.File.FileName);
+            var stream = new SubtitleHandler().WriteSubtitle(quotes);
+            return File(stream.GetBuffer(), "text/plain", subtitleTranslationViewModel.File.FileName);
         }
-
-        //
-        // GET: /Subtitle/Edit
 
         [HttpGet]
         public ActionResult Edit()
