@@ -59,7 +59,7 @@ namespace SubRefactor.Library.Test
                 (beginTimeLine.Add(TimeSpan.Parse("00:01:15.100"))).ToString(),
                 (endTimeLine.Add(TimeSpan.Parse("00:01:15.100"))).ToString()
             };
-            target.SyncSubtitle(quotes, TimeSpan.Parse("00:01:15.100"), false);            
+            target.SyncSubtitle(quotes, TimeSpan.Parse("00:01:15.100"));            
 
             //Assert
             Assert.AreEqual(quotes[0].BeginTimeLine, expected[0]);
@@ -79,7 +79,7 @@ namespace SubRefactor.Library.Test
                 (beginTimeLine.Subtract(TimeSpan.Parse("00:01:15.100"))).ToString(),
                 (endTimeLine.Subtract(TimeSpan.Parse("00:01:15.100"))).ToString()
             };
-            target.SyncSubtitle(quotes, TimeSpan.Parse("00:01:15.100"), true);
+            target.SyncSubtitle(quotes, TimeSpan.Parse("00:01:15.100"));
 
             //Assert
             Assert.AreEqual(quotes[0].BeginTimeLine, expected[0]);
