@@ -74,9 +74,11 @@ namespace SubRefactor.Library
         /// <param name="quotes">Lsit of quotes of the subtitle</param>
         /// <param name="newSubtitleName">A new name for the subtitle</param>
         /// <returns>Subtitle.srt</returns>
-        public Stream WriteSubtitle(IList<Quote> quotes, string newSubtitleName)
+        public MemoryStream WriteSubtitle(IList<Quote> quotes)
         {
-            using (StreamWriter sw = new StreamWriter(string.Format("C:/Temp/{0}", newSubtitleName), false, Encoding.Default))
+            MemoryStream ms = new MemoryStream();
+
+            using (StreamWriter sw = new StreamWriter(ms, Encoding.Default))
             {
                 foreach (Quote quoteInfo in quotes.OrderBy(q => q.Index))
                 {
@@ -85,8 +87,9 @@ namespace SubRefactor.Library
                 }
 
                 sw.Flush();
-                return sw.BaseStream;
             }
+
+            return ms;
         }
     }
 }
