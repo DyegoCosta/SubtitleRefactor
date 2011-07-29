@@ -19,18 +19,18 @@ namespace SubRefactor.Library.Test
             quotes.Add(
                 new Quote()
                     {
-                        Index = "1",
-                        BeginTimeLine = DateTime.Now.TimeOfDay.ToString(),
-                        EndTimeLine = DateTime.Now.TimeOfDay.ToString(),
+                        Index = 1,
+                        BeginTimeLine = DateTime.Now.TimeOfDay,
+                        EndTimeLine = DateTime.Now.TimeOfDay,
                         QuoteLine = "Hello"
                     }
                 );
             quotes.Add(
                 new Quote()
                     {
-                        Index = "2",
-                        BeginTimeLine = DateTime.Now.TimeOfDay.ToString(),
-                        EndTimeLine = DateTime.Now.TimeOfDay.ToString(),
+                        Index = 2,
+                        BeginTimeLine = DateTime.Now.TimeOfDay,
+                        EndTimeLine = DateTime.Now.TimeOfDay,
                         QuoteLine = "World"
                     }
                 );
@@ -51,8 +51,8 @@ namespace SubRefactor.Library.Test
         {
             //Arrange
             SynchronizationEngine target = new SynchronizationEngine();
-            var beginTimeLine = TimeSpan.Parse(quotes[0].BeginTimeLine);
-            var endTimeLine = TimeSpan.Parse(quotes[0].EndTimeLine);
+            var beginTimeLine = quotes[0].BeginTimeLine;
+            var endTimeLine = quotes[0].EndTimeLine;
 
             //Act
             var expected = new string[2]{
@@ -71,8 +71,8 @@ namespace SubRefactor.Library.Test
         {
             //Arrange
             SynchronizationEngine target = new SynchronizationEngine();
-            var beginTimeLine = TimeSpan.Parse(quotes[0].BeginTimeLine);
-            var endTimeLine = TimeSpan.Parse(quotes[0].EndTimeLine);
+            var beginTimeLine = quotes[0].BeginTimeLine;
+            var endTimeLine = quotes[0].EndTimeLine;
 
             //Act
             var expected = new string[2]{
