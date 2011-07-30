@@ -48,7 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GoogleTranslatorService.cs" />
-    <Compile Include="MicrosoftTranslatorService.cs" />
+    <Compile Include="MicrosoftTranslatorProxy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

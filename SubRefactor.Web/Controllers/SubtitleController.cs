@@ -1,12 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Web.Mvc;
-using SubRefactor.Library;
-using SubRefactor.Models;
-using SubRefactor.Library.Languages;
-using System.Collections;
 using SubRefactor.Domain;
+using SubRefactor.Library;
+using SubRefactor.Library.Languages;
+using SubRefactor.Models;
 
 namespace SubRefactor.Controllers
 {
@@ -56,23 +56,19 @@ namespace SubRefactor.Controllers
             catch (InvalidOperationException ex)
             {
                 ModelState.AddModelError("Delay", ex.Message);
-                return View(subtitleSynchronizationViewModel);
+                return View("Synchronize", subtitleSynchronizationViewModel);
             }
 
             var stream = new SubtitleHandler().WriteSubtitle(synchronizedQuotes);
 
-            return this.File(stream.GetBuffer(), "text/plain", subtitleSynchronizationViewModel.File.FileName);
+            return File(stream.GetBuffer(), "text/plain", subtitleSynchronizationViewModel.File.FileName);
         }
 
         [HttpGet]
         public ActionResult Translate()
         {
-            #region ViewBags
-
             ViewBag.Languages = new ServicesLanguages().GetBingLanguages();
             ViewBag.Translators = new List<Translators>() { Translators.Bing, Translators.Google };
-
-            #endregion
 
             return View("Translate");
         }
@@ -80,18 +76,6 @@ namespace SubRefactor.Controllers
         [HttpPost]
         public ActionResult Translate(SubtitleTranslationViewModel subtitleTranslationViewModel)
         {
-            #region ViewBags
-
-            ViewBag.Languages = subtitleTranslationViewModel.Translator == Translators.Bing ?
-                                                                            new ServicesLanguages().GetBingLanguages() :
-                                                                            new ServicesLanguages().GetGoogleLanguages();
-            ViewBag.Translators = new List<Translators>() { 
-                                        Translators.Bing,
-                                        Translators.Google
-                                      };
-
-            #endregion
-
             #region Validations
 
             if (subtitleTranslationViewModel.File == null)
@@ -110,6 +94,14 @@ namespace SubRefactor.Controllers
                 return View(viewName:"Translate", model: subtitleTranslationViewModel);
 
             #endregion
+
+            ViewBag.Languages = subtitleTranslationViewModel.Translator == Translators.Bing ?
+                                                                            new ServicesLanguages().GetBingLanguages() :
+                                                                            new ServicesLanguages().GetGoogleLanguages();
+            ViewBag.Translators = new List<Translators>() { 
+                                        Translators.Bing,
+                                        Translators.Google
+                                      };
 
             var quotes = new SubtitleHandler().ReadSubtitle(subtitleTranslationViewModel.File.InputStream);
 

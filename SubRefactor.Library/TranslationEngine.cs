@@ -15,9 +15,9 @@ namespace SubRefactor.Library
                     
                 case Translators.Google:
                     return new GoogleTranslatorService().Translate(text, from, to);
-                    
+
                 default:
-                    return "";
+                    return null;
             }
         }
     }
