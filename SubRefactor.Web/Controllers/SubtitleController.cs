@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Web;
 using System.Web.Mvc;
 using SubRefactor.Domain;
 using SubRefactor.Library;
@@ -121,6 +122,16 @@ namespace SubRefactor.Controllers
         public ActionResult Edit()
         {
             return View();
+        }
+
+        [HttpPost]
+        public void UploadSubtitleToSession(HttpPostedFileBase file)
+        {
+            var quotes = new SubtitleHandler().ReadSubtitle(file.InputStream);
+
+            var subtitle = new Subtitle(quotes);
+
+            if (HttpContext.Session != null) HttpContext.Session.Add("CurrentSubtitle", subtitle);
         }
 
         #region Ajax

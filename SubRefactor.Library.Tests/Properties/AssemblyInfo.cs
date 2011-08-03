@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SubRefactor.Library.Test")]
+[assembly: AssemblyTitle("SubRefactor.Library.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("SubRefactor.Library.Test")]
+[assembly: AssemblyProduct("SubRefactor.Library.Tests")]
 [assembly: AssemblyCopyright("Copyright © Microsoft 2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("bfe310cd-1b37-4532-b3da-903b7d323bc1")]
+[assembly: Guid("9c440c73-9d71-4f48-8dd6-7ff0f448d9d3")]
 
 // Version information for an assembly consists of the following four values:
 //

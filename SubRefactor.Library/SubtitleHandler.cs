@@ -62,7 +62,7 @@ namespace SubRefactor.Library
                 }
 
                 quotes.Add(quote);
-            }
+            }            
 
             return quotes;
         }

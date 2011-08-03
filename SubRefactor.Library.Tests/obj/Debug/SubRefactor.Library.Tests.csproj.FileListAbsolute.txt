@@ -1,0 +1,13 @@
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Library.Tests\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Library.Tests\bin\Debug\SubRefactor.Library.Tests.dll
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Library.Tests\bin\Debug\SubRefactor.Library.Tests.pdb
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Library.Tests\bin\Debug\SyncSub.Library.dll
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Library.Tests\bin\Debug\SyncSub.Model.dll
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Library.Tests\bin\Debug\SyncSub.Services.dll
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Library.Tests\bin\Debug\GoogleTranslateAPI.dll
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Library.Tests\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Library.Tests\bin\Debug\SyncSub.Library.pdb
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Library.Tests\bin\Debug\SyncSub.Model.pdb
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Library.Tests\bin\Debug\SyncSub.Services.pdb
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Library.Tests\obj\Debug\SubRefactor.Library.Tests.dll
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Library.Tests\obj\Debug\SubRefactor.Library.Tests.pdb

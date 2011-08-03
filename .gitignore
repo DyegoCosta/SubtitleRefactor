@@ -8,9 +8,9 @@ SubRefactor.Library/obj
 SubRefactor.Library/bin
 
 
-SubRefactor.Library.Test/obj
+SubRefactor.Library.Tests/obj
 
-SubRefactor.Library.Test/bin
+SubRefactor.Library.Tests/bin
 
 
 SubRefactor.Services/obj
@@ -32,5 +32,10 @@ SubRefactor.suo
 
 SubRefactor.sln.docstates
 
+SubRefactor.sln.docstates
+.suo
 TestResults
 _ReSharper.SubRefactor
+SubRefactor.6.0.ReSharper
+SubRefactor.6.0.ReSharper.user
+SubRefactor.6.0.ReSharper.suo

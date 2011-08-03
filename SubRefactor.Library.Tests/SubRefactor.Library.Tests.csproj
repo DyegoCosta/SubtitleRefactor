@@ -6,11 +6,11 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{20883B0C-6DE3-4D31-9820-119D1B175850}</ProjectGuid>
+    <ProjectGuid>{BF227311-8522-46A5-BFAC-E2FBBFA5BD7F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SyncSub.Library.Test</RootNamespace>
-    <AssemblyName>SyncSub.Library.Test</AssemblyName>
+    <RootNamespace>SubRefactor.Library.Tests</RootNamespace>
+    <AssemblyName>SubRefactor.Library.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -45,26 +45,19 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Infrastructure\ExtensionsTest.cs" />
-    <Compile Include="Languages\ServicesLanguagesTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SynchronizationEngineTest.cs" />
-    <Compile Include="TranslationEngineTest.cs" />
+    <Compile Include="Languages\GetLanguages.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SubRefactor.Domain\SubRefactor.Domain.csproj">
-      <Project>{5A8D6F0C-3D01-4440-86BD-1ACFC9591E9D}</Project>
-      <Name>SubRefactor.Domain</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SubRefactor.Library\SubRefactor.Library.csproj">
       <Project>{46E55FC5-9723-4C8D-9F84-EB4871E4CBAB}</Project>
       <Name>SubRefactor.Library</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
+    <Folder Include="Synchronization\" />
+    <Folder Include="Translation\" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

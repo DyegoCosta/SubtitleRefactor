@@ -32,30 +32,26 @@
     }
 
 </script>
-<div class="banner">
+<div class="content">        
+        @using (Html.BeginForm("Translate", "Subtitle", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        { 
+            <p>
+                @Html.Label("Subtitle: ") <input type="file" id="File" name="File" />
+                @Html.ValidationMessageFor(model => model.File)
+            </p>
+            <p>
+                @Html.Label("Translator: ") @Html.DropDownListFor(m => m.Translator, new SelectList(ViewBag.Translators))
+            </p>
+            <p>
+                @Html.Label("From: ") @Html.DropDownListFor(m => m.FromLanguage, new SelectList(ViewBag.Languages, "Value", "Key"), "(Select)", new { id = "FromLanguage" })
+                @Html.ValidationMessageFor(model => model.FromLanguage)
+            </p>
+            <p>
+                @Html.Label("To: ") @Html.DropDownListFor(m => m.ToLanguage, new SelectList(ViewBag.Languages, "Value", "Key"), "(Select)", new { id = "ToLanguage" })
+                @Html.ValidationMessageFor(model => model.ToLanguage)
+            </p>        
+            <p>
+                <input type="submit" value="Translate" />
+            </p>
+        }
 </div>
-<div class="page-banner">
-</div>
-<fieldset>
-    @using (Html.BeginForm("Translate", "Subtitle", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    { 
-        <p>
-            @Html.Label("Subtitle: ") <input type="file" id="File" name="File" />
-            @Html.ValidationMessageFor(model => model.File)
-        </p>
-        <p>
-            @Html.Label("Translator: ") @Html.DropDownListFor(m => m.Translator, new SelectList(ViewBag.Translators))
-        </p>
-        <p>
-            @Html.Label("From: ") @Html.DropDownListFor(m => m.FromLanguage, new SelectList(ViewBag.Languages, "Value", "Key"), "(Select)", new { id = "FromLanguage" })
-            @Html.ValidationMessageFor(model => model.FromLanguage)
-        </p>
-        <p>
-            @Html.Label("To: ") @Html.DropDownListFor(m => m.ToLanguage, new SelectList(ViewBag.Languages, "Value", "Key"), "(Select)", new { id = "ToLanguage" })
-            @Html.ValidationMessageFor(model => model.ToLanguage)
-        </p>        
-        <p>
-            <input type="submit" value="Translate" />
-        </p>
-    }
-</fieldset>
