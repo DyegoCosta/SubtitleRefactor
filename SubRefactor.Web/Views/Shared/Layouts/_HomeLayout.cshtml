@@ -1,0 +1,18 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>SubRefactor - @ViewBag.Title</title>
+    @TagHelper.Css("Site.css")
+</head>
+<body>
+    <div class="page">        
+        <div>
+            <div class="home-banner"></div>
+            @RenderBody()
+            <div id="footer">
+                @Html.ActionLink("Home", "Index", "Home") - @Html.ActionLink("About", "About", "Home")
+            </div>
+        </div>
+    </div>
+</body>
+</html>
