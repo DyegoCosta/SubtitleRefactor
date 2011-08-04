@@ -16,11 +16,7 @@
 
 <div class="content">
         @using (Html.BeginForm("Synchronize", "Subtitle", FormMethod.Post, new { enctype = "multipart/form-data" }))
-        { 
-            <p>
-                @Html.Raw("Subtitle: ") <input type="file" id="File" name="File" />
-                @Html.ValidationMessageFor(model => model.File)
-            </p>
+        {            
             <p>
                 @Html.Raw("Time (milliseconds): ") @Html.TextBoxFor(m => m.Delay)
                 @Html.ValidationMessageFor(model => model.Delay)
