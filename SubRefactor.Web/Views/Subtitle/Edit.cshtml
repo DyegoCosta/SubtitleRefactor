@@ -1,14 +1,7 @@
 ﻿@{
     ViewBag.Title = "Edit";
-    Layout = "_Layout";
+    Layout = "~/Views/Shared/Layouts/_Layout.cshtml";
 }
 <div class="content">
-    <fieldset>
-        @using (Html.BeginForm("UploadForEdit", "Subtitle", FormMethod.Post, new { enctype = "multipart/form-data" }))
-        { 
 
-
-            <input type="submit" value="Syncronize" />
-        }
-    </fieldset>
 </div>

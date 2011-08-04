@@ -1,8 +1,9 @@
-﻿@helper SubtitleUploadHelper(string subtitleUploadAction)
-    {               
-    <div id="dialog-form" title="Upload subtitle">
+﻿@helper SubtitleUploadHelper(string subtitleUploadAction, string cssClass)
+    {             
+
+    <div id="dialog-form" class="@cssClass" title="Upload subtitle">
         <p class="validate-tip">
-            Upload your subtitle before continue</p>            
+            Upload your subtitle before continue</p>
         <form action="@subtitleUploadAction" method="post">
         <label for="name">
             Subtitle</label>
@@ -30,6 +31,10 @@
     </script>
         
     <style>
-        .validate-tip { padding-bottom: 10px; font-style:italic; }
+        .validate-tip
+        {
+            padding-bottom: 10px;
+            font-style: italic;
+        }
     </style>
 }

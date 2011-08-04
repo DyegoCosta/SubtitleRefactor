@@ -1,33 +1,17 @@
 ﻿@model SubRefactor.Models.SubtitleSynchronizationViewModel
 @{
     ViewBag.Title = "Synchronization";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/Layouts/_Layout.cshtml";
 }
-
-<script language="javascript" src="@Url.Content("~/Scripts/jQuery/jquery.ui.mouse.min.js")" type="text/javascript"/>
-<script language="javascript" src="@Url.Content("~/Scripts/jQuery/jquery.ui.slider.min.js")" type="text/javascript"/>
-
-<script type="text/javascript" language="javascript">
-    $(function () {
-        $("#slider-range-min").slider({
-            range: "min",
-            value: 0,
-            min: -10000,
-            max: 10000,
-            slide: function (event, ui) {
-                $("#Delay").val(ui.value);
-            }
-        });
-        $("#Delay").val($("#slider-range-min").slider("value"));
-        $("#Delay").change(function () {
-            $("#slider-range-min").slider("value", this.value);
-        });
-    });
-</script>
+@section Header {
+    @TagHelper.jQuery("jquery.ui.mouse.min.js")
+    @TagHelper.jQuery("jquery.ui.slider.min.js")
+    @TagHelper.Script("synchronize.js")
+}
 
 @if (HttpContext.Current.Session["Subtitle"] == null)
 {     
-    @SubtitleHelper.SubtitleUploadHelper("")
+    @SubtitleHelper.SubtitleUploadHelper("", "")
 }
 
 <div class="content">

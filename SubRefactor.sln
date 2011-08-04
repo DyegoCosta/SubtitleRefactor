@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C3310E24-8492-48A5-B804-24E09BF18E68}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubRefactor.Domain", "SubRefactor.Domain\SubRefactor.Domain.csproj", "{5A8D6F0C-3D01-4440-86BD-1ACFC9591E9D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubRefactor.Library", "SubRefactor.Library\SubRefactor.Library.csproj", "{46E55FC5-9723-4C8D-9F84-EB4871E4CBAB}"
@@ -10,15 +8,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubRefactor.Web", "SubRefactor.Web\SubRefactor.Web.csproj", "{B708231D-3779-425F-9FBE-D4EDF8C14BEA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubRefactor.Services", "SubRefactor.Services\SubRefactor.Services.csproj", "{C335FB5A-C601-47B9-ACE3-53BD8EEC7D29}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubRefactor.Library.Tests", "SubRefactor.Library.Tests\SubRefactor.Library.Tests.csproj", "{BF227311-8522-46A5-BFAC-E2FBBFA5BD7F}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{22CFC873-2924-42D3-B5DA-9890D36B9BCD}"
-	ProjectSection(SolutionItems) = preProject
-		Local.testsettings = Local.testsettings
-		SubRefactor.vsmdi = SubRefactor.vsmdi
-		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
@@ -45,16 +34,8 @@ Global
 		{C335FB5A-C601-47B9-ACE3-53BD8EEC7D29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C335FB5A-C601-47B9-ACE3-53BD8EEC7D29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C335FB5A-C601-47B9-ACE3-53BD8EEC7D29}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BF227311-8522-46A5-BFAC-E2FBBFA5BD7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BF227311-8522-46A5-BFAC-E2FBBFA5BD7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BF227311-8522-46A5-BFAC-E2FBBFA5BD7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BF227311-8522-46A5-BFAC-E2FBBFA5BD7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{BF227311-8522-46A5-BFAC-E2FBBFA5BD7F} = {C3310E24-8492-48A5-B804-24E09BF18E68}
-		{22CFC873-2924-42D3-B5DA-9890D36B9BCD} = {C3310E24-8492-48A5-B804-24E09BF18E68}
 	EndGlobalSection
 EndGlobal

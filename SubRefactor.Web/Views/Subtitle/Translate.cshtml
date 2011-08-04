@@ -1,44 +1,16 @@
 ﻿@model SubRefactor.Models.SubtitleTranslationViewModel
 @{
     ViewBag.Title = "Translation";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/Layouts/_Layout.cshtml";
+}
+@section Header
+{
+    @TagHelper.Script("translate.js")
 }
 
-<script type="text/javascript" language="javascript">
-
-    $(document).ready(function () {
-        $("#Translator").change(function () {
-            if ($(this).val() != null && $(this).val() != "") {
-                listLanguages($(this).val());
-            }
-            else {
-                $("#FromLanguage :gt(0)").remove();
-                $("#ToLanguage :gt(0)").remove();
-            }
-        });
-    });
-
-    function listLanguages(translator) {
-        $("#FromLanguage :gt(0)").remove();
-        $("#ToLanguage :gt(0)").remove();
-        $.getJSON('@Url.Content("~/Views/Subtitle/ListLanguagesByTranslator")/' + translator, listLanguagesCallBack);
-    }
-
-    function listLanguagesCallBack(json) {
-        $(json).each(function () {
-            $("#FromLanguage").append("<option value='" + this.Value + "'>" + this.Key + "</option>");
-            $("#ToLanguage").append("<option value='" + this.Value + "'>" + this.Key + "</option>");
-        });
-    }
-
-</script>
 <div class="content">        
         @using (Html.BeginForm("Translate", "Subtitle", FormMethod.Post, new { enctype = "multipart/form-data" }))
         { 
-            <p>
-                @Html.Label("Subtitle: ") <input type="file" id="File" name="File" />
-                @Html.ValidationMessageFor(model => model.File)
-            </p>
             <p>
                 @Html.Label("Translator: ") @Html.DropDownListFor(m => m.Translator, new SelectList(ViewBag.Translators))
             </p>
