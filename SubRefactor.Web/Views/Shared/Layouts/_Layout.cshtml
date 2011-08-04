@@ -21,7 +21,7 @@
 <body>
     <div class="page">
         <div id="header">
-            <div class="banner">
+            <div class="banner" onclick="location.href='@Url.Content("~/Home/Index")';">
             </div>
             <div class="menu-container">
                 <ul id="menu">
@@ -34,15 +34,23 @@
                     <li><a href="@Url.Content("~/Subtitle/Edit")">
                         <img src="../../../Content/themes/base/images/edit-button-icon.png" />
                     </a></li>
-                </ul>
-            </div>
+                </ul>                
+            </div>   
+            <br/>         
         </div>
         <div id="main">
             @RenderBody()
         </div>
         <div id="footer">
-            @Html.ActionLink("Home", "Index", "Home") - @Html.ActionLink("About", "About", "Home")
-        </div>
+                @Html.ActionLink("Home", "Index", "Home") ▪
+                @Html.ActionLink("About", "About", "Home") ▪
+                @FeedbackHelper.ModalLink("") ▪
+                <a href="https://github.com/dyego-costa/SubtitleRefactor" target="new">GitHub</a>
+                <br />
+                <br />
+                <br />
+                Developed by <a href="http://about.me/dyego.costa" target="new">Dyego Costa</a>
+            </div>
     </div>
 </body>
 </html>

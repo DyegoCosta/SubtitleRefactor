@@ -5,12 +5,20 @@
     @TagHelper.Css("Site.css")
 </head>
 <body>
-    <div class="page">        
+    <div class="page">
         <div>
-            <div class="home-banner"></div>
+            <div class="home-banner">
+            </div>
             @RenderBody()
             <div id="footer">
-                @Html.ActionLink("Home", "Index", "Home") - @Html.ActionLink("About", "About", "Home")
+                @Html.ActionLink("Home", "Index", "Home") ▪
+                @Html.ActionLink("About", "About", "Home") ▪
+                @FeedbackHelper.ModalLink("") ▪
+                <a href="https://github.com/dyego-costa/SubtitleRefactor" target="new">GitHub</a>
+                <br />
+                <br />
+                <br />
+                Developed by <a href="http://about.me/dyego.costa" target="new">Dyego Costa</a>
             </div>
         </div>
     </div>
