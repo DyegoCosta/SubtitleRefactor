@@ -6,10 +6,10 @@ a:hover { color: #1d60ff; text-decoration: none; }
 a:active { color: #12eb87; }
 
 .page { padding: 5px; width: 1000px; position: absolute; left: 50%; margin-left: -500px; }
-header, #header { position: relative; margin-bottom: 0px; color: #000; padding: 0; }
+header, #header {padding-bottom: 5px; position: relative; margin-bottom: 0px; color: #000; padding: 0; }
 #main { width: 1000px; margin-top: 150px; }
-#footer { padding-top: 20px; text-align: center; line-height: normal; font-size: .9em; }
-#footer a { color: #737B83; text-decoration: none; font-size: small; }
+#footer { padding-top: 50px; text-align: center; line-height: normal; font-size: .9em; }
+#footer a { color: #737B83; text-decoration: none; font-size: small; padding: 0px 5px 0px 5px; }
 
 .field-validation-error { color: #ff0000; }
 .field-validation-valid { display: none; }
@@ -19,8 +19,8 @@ header, #header { position: relative; margin-bottom: 0px; color: #000; padding: 
 
 .content { padding: 20px; background-color: #DFE1F1; }
 
-.home-banner { background: url("../../Content/themes/base/images/bigger-banner.png"); background-repeat: no-repeat; background-position: center; background-color: #93B4D5; height: 570px; }
-.banner { float: left; background: url("../../Content/themes/base/images/banner-mini.png"); background-repeat: no-repeat; background-position: left; height: 150px; width: 250px; }
+.home-banner { background: url("../../Content/themes/base/images/bigger-banner.png"); background-repeat: no-repeat;background-position: center; background-color: #93B4D5;height: 520px; }
+.banner { cursor: pointer; float: left; background: url("../../Content/themes/base/images/banner-mini.png"); background-repeat: no-repeat;background-position:left bottom; height: 150px; width: 250px; }
 
 .home-menu { text-align: center; }
 .home-menu a { display: inline-block;  text-decoration: none; color: White; font-family: Verdana, Arial, Helvetica, sans-serif; padding: 0px 10px 0px 10px; margin-left: 50px; margin-right: 50px; }
@@ -29,6 +29,10 @@ header, #header { position: relative; margin-bottom: 0px; color: #000; padding: 
 
 ul#menu { margin: 0; text-align: right; }
 ul#menu li { display: inline; list-style: none; }
-ul#menu li a { padding: 10px; text-decoration: none; }
+ul#menu li a { margin-left: 15px; text-decoration: none; }
 ul#menu li a img { border: none; }
-.menu-container { float: right; margin-top: 115px; position: relative; }
+.menu-container { float: right; margin-top: 115px; background-position: center; position: relative; }
+
+.button { padding: 4px; }
+
+.dialog a { padding: 4px; }
