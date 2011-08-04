@@ -8,6 +8,11 @@
     @TagHelper.Script("translate.js")
 }
 
+@if (HttpContext.Current.Session["Subtitle"] == null)
+{     
+    @SubtitleHelper.SubtitleUploadHelper("", "")
+}
+
 <div class="content">        
         @using (Html.BeginForm("Translate", "Subtitle", FormMethod.Post, new { enctype = "multipart/form-data" }))
         { 
