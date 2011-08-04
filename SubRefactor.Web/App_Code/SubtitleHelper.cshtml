@@ -1,0 +1,35 @@
+﻿@helper SubtitleUploadHelper(string subtitleUploadAction)
+    {               
+    <div id="dialog-form" title="Upload subtitle">
+        <p class="validate-tip">
+            Upload your subtitle before continue</p>            
+        <form action="@subtitleUploadAction" method="post">
+        <label for="name">
+            Subtitle</label>
+        <input type="file" id="Subtitle" />
+        </form>
+    </div>
+                
+    <script type="text/javascript" language="javascript">
+        $("#dialog-form").dialog({
+            autoOpen: true,
+            height: 180,
+            width: 350,
+            modal: true,
+            buttons: {
+                "Upload": function () {
+                    alert("Do something");
+                },
+                "Cancel": function () {
+                    alert("Do something else");
+                }
+            }
+        });
+
+        $("#dialog-form").dialog();
+    </script>
+        
+    <style>
+        .validate-tip { padding-bottom: 10px; font-style:italic; }
+    </style>
+}

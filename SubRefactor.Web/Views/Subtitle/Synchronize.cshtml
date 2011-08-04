@@ -25,6 +25,11 @@
     });
 </script>
 
+@if (true)
+{     
+    @SubtitleHelper.SubtitleUploadHelper("")
+}
+
 <div class="content">
         @using (Html.BeginForm("Synchronize", "Subtitle", FormMethod.Post, new { enctype = "multipart/form-data" }))
         { 
@@ -42,6 +47,6 @@
             <br/>
             <p>
                 <input type="submit" value="Syncronize" />
-            </p>
+            </p>            
         }
 </div>
