@@ -10,17 +10,16 @@
         }
     });
 
+    function listLanguages(translator) {
+        $("#FromLanguage :gt(0)").remove();
+        $("#ToLanguage :gt(0)").remove();
+        $.getJSON('../Subtitle/ListLanguagesByTranslator/' + translator, listLanguagesCallBack);
+    }
+
+    function listLanguagesCallBack(json) {
+        $(json).each(function () {
+            $("#FromLanguage").append("<option value='" + this.Value + "'>" + this.Key + "</option>");
+            $("#ToLanguage").append("<option value='" + this.Value + "'>" + this.Key + "</option>");
+        });
+    }
 });
-
-function listLanguages(translator) {
-    $("#FromLanguage :gt(0)").remove();
-    $("#ToLanguage :gt(0)").remove();
-    $.getJSON('@Url.Content("~/Views/Subtitle/ListLanguagesByTranslator")/' + translator, listLanguagesCallBack);
-}
-
-function listLanguagesCallBack(json) {
-    $(json).each(function () {
-        $("#FromLanguage").append("<option value='" + this.Value + "'>" + this.Key + "</option>");
-        $("#ToLanguage").append("<option value='" + this.Value + "'>" + this.Key + "</option>");
-    });
-}
