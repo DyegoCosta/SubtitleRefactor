@@ -9,7 +9,7 @@ namespace SubRefactor.Domain
             Quotes = quotes;
         }
 
-        public string SubtitleName { get; set; }
+        public string Name { get; set; }
         public string Release { get; set; }
         public IList<Quote> Quotes { get; set; }        
     }
