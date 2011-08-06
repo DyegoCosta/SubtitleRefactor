@@ -22,21 +22,11 @@ namespace SubRefactor.Controllers
         [HttpPost]
         public ActionResult Synchronize(SubtitleSynchronizationViewModel subtitleSynchronizationViewModel)
         {
+            subtitleSynchronizationViewModel.Subtitle = (Subtitle)HttpContext.Session["EditableSubtitle"];
+
             #region Validations
 
-            if (subtitleSynchronizationViewModel != null && subtitleSynchronizationViewModel.File == null)
-                ModelState.AddModelError("File", "A file is required.");
-            else
-            {
-                if (subtitleSynchronizationViewModel != null)
-                {
-                    string extension = Path.GetExtension(subtitleSynchronizationViewModel.File.FileName);
-                    if (extension != ".srt")
-                        ModelState.AddModelError("File", "The subtitle must be a .srt file");
-                }
-            }
-
-            if (subtitleSynchronizationViewModel != null && subtitleSynchronizationViewModel.Delay == 0)
+            if (subtitleSynchronizationViewModel.Delay == 0)
                 ModelState.AddModelError("Delay", "Must not be 0.");
 
             if (!ModelState.IsValid)
@@ -46,13 +36,12 @@ namespace SubRefactor.Controllers
 
             dynamic delay = subtitleSynchronizationViewModel.Delay;
             delay = TimeSpan.FromMilliseconds(delay);
-
-            var quotes = new SubtitleHandler().ReadSubtitle(subtitleSynchronizationViewModel.File.InputStream);
+            
             IList<Quote> synchronizedQuotes;
 
             try
             {
-                synchronizedQuotes = new SynchronizationEngine().SyncSubtitle(quotes, delay);
+                synchronizedQuotes = new SynchronizationEngine().SyncSubtitle(subtitleSynchronizationViewModel.Subtitle.Quotes, delay);
             }
             catch (InvalidOperationException ex)
             {
@@ -60,9 +49,12 @@ namespace SubRefactor.Controllers
                 return View("Synchronize", subtitleSynchronizationViewModel);
             }
 
-            var stream = new SubtitleHandler().WriteSubtitle(synchronizedQuotes);
+            subtitleSynchronizationViewModel.Subtitle.Quotes = synchronizedQuotes;
+            HttpContext.Session["EditableSubtitle"] = subtitleSynchronizationViewModel.Subtitle;
 
-            return File(stream.GetBuffer(), "text/plain", subtitleSynchronizationViewModel.File.FileName);
+            var stream = new SubtitleHandler().WriteSubtitle(synchronizedQuotes);            
+
+            return File(stream.GetBuffer(), "text/plain", subtitleSynchronizationViewModel.Subtitle.Name);
         }
 
         [HttpGet]
@@ -77,13 +69,9 @@ namespace SubRefactor.Controllers
         [HttpPost]
         public ActionResult Translate(SubtitleTranslationViewModel subtitleTranslationViewModel)
         {
-            #region Validations
+            subtitleTranslationViewModel.Subtitle = (Subtitle)HttpContext.Session["EditableSubtitle"];
 
-            if (subtitleTranslationViewModel.File == null)
-                ModelState.AddModelError("File", "A file is required.");
-            else
-                if (Path.GetExtension(subtitleTranslationViewModel.File.FileName) != ".srt")
-                    ModelState.AddModelError("File", "The subtitle must be a .srt file");
+            #region Validations
 
             if (string.IsNullOrEmpty(subtitleTranslationViewModel.FromLanguage))
                 ModelState.AddModelError("FromLanguage", "Select a language");
@@ -103,19 +91,19 @@ namespace SubRefactor.Controllers
                                         Translators.Bing,
                                         Translators.Google
                                       };
-
-            var quotes = new SubtitleHandler().ReadSubtitle(subtitleTranslationViewModel.File.InputStream);
-
-            foreach (var quote in quotes)
+            
+            foreach (var quote in subtitleTranslationViewModel.Subtitle.Quotes)
                 quote.QuoteLine = new TranslationEngine().Translate(
                                                             subtitleTranslationViewModel.Translator,
                                                             quote.QuoteLine,
                                                             subtitleTranslationViewModel.FromLanguage,
                                                             subtitleTranslationViewModel.ToLanguage
                                                          );
+            
+            HttpContext.Session["EditableSubtitle"] = subtitleTranslationViewModel.Subtitle;
 
-            var stream = new SubtitleHandler().WriteSubtitle(quotes);
-            return File(stream.GetBuffer(), "text/plain", subtitleTranslationViewModel.File.FileName);
+            var stream = new SubtitleHandler().WriteSubtitle(subtitleTranslationViewModel.Subtitle.Quotes);
+            return File(stream.GetBuffer(), "text/plain", subtitleTranslationViewModel.Subtitle.Name);
         }
 
         [HttpGet]
@@ -125,13 +113,27 @@ namespace SubRefactor.Controllers
         }
 
         [HttpPost]
-        public void UploadSubtitleToSession(HttpPostedFileBase file)
+        public ActionResult UploadSubtitleToSession(HttpPostedFileBase file)
         {
+            if (Path.GetExtension(file.FileName) != ".srt")
+                return Redirect(Request.UrlReferrer.AbsoluteUri);
+
             var quotes = new SubtitleHandler().ReadSubtitle(file.InputStream);
 
             var subtitle = new Subtitle(quotes);
+            subtitle.Name = Path.GetFileName((file.FileName));
 
-            if (HttpContext.Session != null) HttpContext.Session.Add("CurrentSubtitle", subtitle);
+            HttpContext.Session["OriginalSubtitle"] = subtitle;
+            HttpContext.Session["EditableSubtitle"] = subtitle;
+
+            return Redirect(Request.UrlReferrer.AbsoluteUri);
+        }
+
+        public ActionResult ClearSubtitleSession()
+        {
+            HttpContext.Session["OriginalSubtitle"] = null;
+
+            return Redirect(Request.UrlReferrer.AbsoluteUri);
         }
 
         #region Ajax

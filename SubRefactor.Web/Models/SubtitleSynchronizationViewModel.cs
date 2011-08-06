@@ -1,13 +1,12 @@
-﻿using System.Web;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using SubRefactor.Domain;
 
 namespace SubRefactor.Models
 {
     public class SubtitleSynchronizationViewModel
     {
-        [Required]
-        public HttpPostedFileBase File { get; set; }
-        
+        public Subtitle Subtitle { get; set; }
+
         [Required]
         public int Delay { get; set; }
     }

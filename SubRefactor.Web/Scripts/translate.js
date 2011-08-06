@@ -22,4 +22,6 @@
             $("#ToLanguage").append("<option value='" + this.Value + "'>" + this.Key + "</option>");
         });
     }
+
+    $("#Translate").button();
 });
