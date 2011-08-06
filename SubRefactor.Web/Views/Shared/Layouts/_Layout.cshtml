@@ -53,7 +53,7 @@
                 {
                     var subtitleName = (HttpContext.Current.Session["OriginalSubtitle"] as SubRefactor.Domain.Subtitle).Name;
                     <span id="currentSubtitle" class="ui-state-highlight">Current subtitle: @subtitleName</span>                      
-                    <span>(@Html.ActionLink("Change", "ClearSubtitleSession", null, new { @class = "change-subtitle" }))</span>
+                    <span>(@Html.ActionLink("Remove", "ClearSubtitleSession", null, new { @class = "change-subtitle" }))</span>
                     <br />
                     <br />
                 }
