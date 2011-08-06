@@ -3,6 +3,14 @@
 <head>
     <title>SubRefactor - @ViewBag.Title</title>
     @TagHelper.Css("Site.css")
+    @TagHelper.Css("tipTip.css", "redmond")   
+    @TagHelper.Css("redmond", "jquery-ui-1.8.14.custom.css")
+     
+    @TagHelper.jQuery("jquery-1.5.1.min.js")
+    @TagHelper.jQuery("jquery-ui-1.8.12.custom.min.js")
+    @TagHelper.jQuery("jquery.tipTip.min.js")
+
+    @TagHelper.Script("global.js")
 </head>
 <body>
     <div class="page">
@@ -12,13 +20,9 @@
             @RenderBody()
             <div id="footer">
                 @Html.ActionLink("Home", "Index", "Home") ▪
-                @Html.ActionLink("About", "About", "Home") ▪
-                @FeedbackHelper.ModalLink("") ▪
-                <a href="https://github.com/dyego-costa/SubtitleRefactor" target="new">GitHub</a>
-                <br />
-                <br />
-                <br />
-                Developed by <a href="http://about.me/dyego.costa" target="new">Dyego Costa</a>
+                @Html.ActionLink("About", "About", "Home") ▪                
+                <a href="https://github.com/dyego-costa/SubtitleRefactor" target="new">GitHub</a>                
+                <div class="author">Developed by <a href="http://about.me/dyego.costa" target="new">Dyego Costa</a></div>
             </div>
         </div>
     </div>

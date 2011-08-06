@@ -2,12 +2,11 @@
 <html>
 <head>
     <title>SubRefactor - @ViewBag.Title</title>
-
     @TagHelper.Css("Site.css")
-    @TagHelper.Css("redmond", "jquery-ui-1.8.14.custom.css")    
+    @TagHelper.Css("redmond", "jquery-ui-1.8.14.custom.css")
     @TagHelper.Css("redmond", "jquery.ui.dialog.css")
     @TagHelper.Css("redmond", "jquery.ui.slider.css")
-    
+    @TagHelper.Css("redmond", "tipTip.css")
     @TagHelper.jQuery("jquery-1.5.1.min.js")
     @TagHelper.jQuery("jquery-ui-1.8.12.custom.min.js")
     @TagHelper.jQuery("jquery.ui.core.min.js")
@@ -15,7 +14,8 @@
     @TagHelper.jQuery("jquery.ui.position.min.js")
     @TagHelper.jQuery("jquery.ui.dialog.min.js")
     @TagHelper.jQuery("jquery.ui.button.min.js")
-
+    @TagHelper.jQuery("jquery.tipTip.min.js")
+    @TagHelper.Script("global.js")
     @RenderSection("Header", required: false)
 </head>
 <body>
@@ -26,31 +26,47 @@
             <div class="menu-container">
                 <ul id="menu">
                     <li><a href="@Url.Content("~/Subtitle/Synchronize")">
-                        <img src="../../../Content/themes/base/images/sync-button-icon.png" />
+                        <img src="../../../Content/themes/base/images/sync-button-icon.png" class="tipTip"
+                            title="Synchronize" />
                     </a></li>
                     <li><a href="@Url.Content("~/Subtitle/Translate")">
-                        <img src="../../../Content/themes/base/images/translate-button-icon.png" />
+                        <img src="../../../Content/themes/base/images/translate-button-icon.png" class="tipTip"
+                            title="Translate" />
                     </a></li>
-                    <li><a href="@Url.Content("~/Subtitle/Edit")">
-                        <img src="../../../Content/themes/base/images/edit-button-icon.png" />
+                    <li><a href="javascript:void(0);">
+                        <img src="../../../Content/themes/base/images/edit-button-icon.png" class="tipTip"
+                            title="Coming soon" />
                     </a></li>
-                </ul>                
-            </div>   
-            <br/>         
+                </ul>
+            </div>
+            <br />
         </div>
         <div id="main">
-            @RenderBody()
+            <div class="content">
+                @if (HttpContext.Current.Session["OriginalSubtitle"] == null && (
+                    ViewContext.RouteData.Values["Action"].ToString() == "Synchronize" ||
+                    ViewContext.RouteData.Values["Action"].ToString() == "Translate"))
+                {
+                    @SubtitleHelper.SubtitleUploadHelper("UploadSubtitleToSession", "")
+                }
+                @if (HttpContext.Current.Session["OriginalSubtitle"] != null)
+                {
+                    var subtitleName = (HttpContext.Current.Session["OriginalSubtitle"] as SubRefactor.Domain.Subtitle).Name;
+                    <span id="currentSubtitle" class="ui-state-highlight">Current subtitle: @subtitleName</span>                      
+                    <span>(@Html.ActionLink("Change", "ClearSubtitleSession", null, new { @class = "change-subtitle" }))</span>
+                    <br />
+                    <br />
+                }
+                @RenderBody()
+            </div>
         </div>
         <div id="footer">
-                @Html.ActionLink("Home", "Index", "Home") ▪
-                @Html.ActionLink("About", "About", "Home") ▪
-                @FeedbackHelper.ModalLink("") ▪
-                <a href="https://github.com/dyego-costa/SubtitleRefactor" target="new">GitHub</a>
-                <br />
-                <br />
-                <br />
-                Developed by <a href="http://about.me/dyego.costa" target="new">Dyego Costa</a>
-            </div>
+            @Html.ActionLink("Home", "Index", "Home") ▪
+            @Html.ActionLink("About", "About", "Home") ▪ 
+            <a href="https://github.com/dyego-costa/SubtitleRefactor" target="new">GitHub</a>
+            <div class="author">
+                Developed by <a href="http://about.me/dyego.costa" target="new">Dyego Costa</a></div>
+        </div>
     </div>
 </body>
 </html>
