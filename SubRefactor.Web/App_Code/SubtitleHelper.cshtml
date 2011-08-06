@@ -1,41 +1,107 @@
-﻿@helper SubtitleUploadHelper(string subtitleUploadAction, string cssClass)
-    {             
-
-    <div id="dialog-form" class="@cssClass" title="Upload subtitle">
-        <p class="validate-tip">
-            Upload your subtitle before continue</p>
-        <form action="@subtitleUploadAction" method="post">
-        <label for="name">
-            Subtitle</label>
-        <input type="file" id="Subtitle" />
-        </form>
-    </div>
-                
-    <script type="text/javascript" language="javascript">
-        $("#dialog-form").dialog({
-            autoOpen: true,
-            height: 180,
-            width: 350,
-            modal: true,
-            dialogClass: "dialog",
-            buttons: {
-                "Upload": function () {
-                    alert("Do something");
-                },
-                "Cancel": function () {
-                    alert("Do something else");
-                }
-            }
-        });
-
-        $("#dialog-form").dialog();
-    </script>
-        
-    <style>
-        .validate-tip
+﻿@using SubRefactor.Domain
+@helper QuoteList(Subtitle originalSubtitle, Subtitle editableSubtitle)
+    {
+        if (originalSubtitle != null && editableSubtitle != null)
         {
-            padding-bottom: 10px;
-            font-style: italic;
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $("#originalSubtitle").scroll(function() {
+                        $("#editableSubtitle").scrollTop($("#originalSubtitle").scrollTop());
+                    });
+                    $("#editableSubtitle").scroll(function() {
+                        $("#originalSubtitle").scrollTop($("#editableSubtitle").scrollTop());
+                    });
+                });
+            </script>
+
+            <div>
+                <div id="originalSubtitle" class="quotes-list-partial">
+                    @foreach (var quote in originalSubtitle.Quotes)
+                    {
+                        <div>
+                            Index: @quote.Index
+                        </div>
+                    }
+                </div>
+                <div id="editableSubtitle" class="quotes-list-partial">
+                    @foreach (var quote in editableSubtitle.Quotes)
+                    {
+                        <div>
+                            Index: @quote.Index
+                        </div>
+                    }
+                </div>
+            </div>
         }
-    </style>
+}
+
+@helper SubtitleUploadHelper(string subtitleUploadAction, string cssClass)
+	{             
+
+	<div id="dialog-form" class="@cssClass" title="Upload subtitle">
+		<p class="validateTips">
+			Upload your subtitle before continue</p>
+		<form id="subtitle-upload-form" enctype="multipart/form-data" action="/Subtitle/@subtitleUploadAction" method="post">
+		<label for="name">
+			Subtitle</label>
+		<input type="file" id="file" name="file" />
+		</form>
+	</div>
+				
+	<script type="text/javascript" language="javascript">
+		$("#dialog-form").dialog({
+			autoOpen: true,
+			height: 200,
+			width: 370,
+			modal: true,
+			dialogClass: "dialog",
+			buttons: {
+				"Upload": function () {
+					var bValid = true;
+					$("#file").removeClass("ui-state-error");
+					bValid = checkFileExtension();
+					if (bValid) {
+						$("form#subtitle-upload-form").submit();
+					}
+				}
+			},
+			close: function () {
+				window.location = "/Home/Index";
+			}
+		});
+
+		function updateTips(t) {
+			$(".validateTips")
+				.text(t)
+				.addClass("ui-state-highlight");
+			
+			setTimeout(function () {
+				$(".validateTips").removeClass("ui-state-highlight");
+			}, 1500);
+		}
+		
+		function checkFileExtension() {
+			var fileInput = $("#file");
+			var fileName = fileInput.val();
+			var extension = fileName.split('.').pop();
+			if (extension != "srt") {
+				fileInput.addClass("ui-state-error");
+				updateTips("Sorry, we current only suport .srt files");
+				return false;
+			} else {
+				return true;
+			}
+		}
+
+		$("#dialog-form").dialog();
+	</script>
+		
+	<style>
+		.validateTips
+		{
+			padding:0.3em;
+			margin-bottom: 20px;
+			font-style: italic;			
+		}
+	</style>
 }
