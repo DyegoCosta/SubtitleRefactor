@@ -41,24 +41,29 @@ namespace SubRefactor.Library
                 foreach (var line in lines)
                 {
                     if (indexRegex.IsMatch(line))
-                        quote.Index = Convert.ToInt32(line);
+                        quote.Index = int.Parse(line);
                     else if (timeRegex.IsMatch(line))
                     {
                         var matches = integerRegex.Matches(line);
                         if (matches.Count != 8)
                             throw new Exception("The selected file is invalid");
 
-                        quote.BeginTimeLine = new TimeSpan(0, Convert.ToInt32(matches[0].Value),
-                                                           Convert.ToInt32(matches[1].Value),
-                                                           Convert.ToInt32(matches[2].Value),
-                                                           Convert.ToInt32(matches[3].Value));
-                        quote.EndTimeLine = new TimeSpan(0, Convert.ToInt32(matches[4].Value),
-                                                         Convert.ToInt32(matches[5].Value),
-                                                         Convert.ToInt32(matches[6].Value),
-                                                         Convert.ToInt32(matches[7].Value));
+                        quote.BeginTimeLine = new TimeSpan(0, int.Parse(matches[0].Value),
+                                                           int.Parse(matches[1].Value),
+                                                           int.Parse(matches[2].Value),
+                                                           int.Parse(matches[3].Value));
+                        quote.EndTimeLine = new TimeSpan(0, int.Parse(matches[4].Value),
+                                                         int.Parse(matches[5].Value),
+                                                         int.Parse(matches[6].Value),
+                                                         int.Parse(matches[7].Value));
                     }
                     else
-                        quote.QuoteLine = line;
+                    {
+                        if (quote.QuoteLine == null)
+                            quote.QuoteLine = line;
+                        else                        
+                            quote.QuoteLine += "\r\n" + line;                        
+                    }
                 }
 
                 quotes.Add(quote);
