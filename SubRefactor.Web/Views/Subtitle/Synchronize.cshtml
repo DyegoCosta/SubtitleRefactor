@@ -10,11 +10,12 @@
 }
 
 @using (Html.BeginForm("Synchronize", "Subtitle", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{            
-    <p>
-        @Html.Raw("Time (milliseconds): ") @Html.TextBoxFor(m => m.Delay)
-        @Html.ValidationMessageFor(model => model.Delay)
-    </p>        
+ {     
+    <p>@Html.Raw("Milliseconds: ") @Html.TextBoxFor(m => m.Delay, new { id = "milliseconds" })</p>
+    <p>@Html.Raw("Segundo: ")<span id="seconds"></span></p>
+    <p>@Html.Raw("Minuto: ")<span id="minutes"></span></p>
+    
+    @Html.ValidationMessageFor(model => model.Delay)
     <br/>
     <div id="slider-range-min">
     </div>

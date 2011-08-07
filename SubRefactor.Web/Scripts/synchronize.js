@@ -4,14 +4,18 @@
         $("#slider-range-min").slider({
             range: "min",
             value: 0,
-            min: -10000,
-            max: 10000,
+            min: -100000,
+            max: 100000,
             slide: function (event, ui) {
-                $("#Delay").val(ui.value);
+                $("#milliseconds").val(ui.value);
+                $("#seconds").html(ui.value / 1000);
+                $("#minutes").html($("#seconds").html() / 60);
             }
         });
-        $("#Delay").val($("#slider-range-min").slider("value"));
-        $("#Delay").change(function () {
+        $("#milliseconds").val($("#slider-range-min").slider("value"));
+        $("#milliseconds").change(function () {
+            $("#seconds").html(this.value / 1000);
+            $("#minutes").html($("#seconds").html() / 60);
             $("#slider-range-min").slider("value", this.value);
         });
     });
