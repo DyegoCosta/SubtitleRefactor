@@ -12,8 +12,8 @@
 @using (Html.BeginForm("Synchronize", "Subtitle", FormMethod.Post, new { enctype = "multipart/form-data" }))
  {     
     <p>@Html.Raw("Milliseconds: ") @Html.TextBoxFor(m => m.Delay, new { id = "milliseconds" })</p>
-    <p>@Html.Raw("Segundo: ")<span id="seconds">0</span></p>
-    <p>@Html.Raw("Minuto: ")<span id="minutes">0</span></p>
+    <p>@Html.Raw("Seconds: ")<span id="seconds">0</span></p>
+    <p>@Html.Raw("Minutes: ")<span id="minutes">0</span></p>
     
     @Html.ValidationMessageFor(model => model.Delay)
     <br/>
