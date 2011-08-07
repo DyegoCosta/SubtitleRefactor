@@ -4,8 +4,8 @@
         $("#slider-range-min").slider({
             range: "min",
             value: 0,
-            min: -100000,
-            max: 100000,
+            min: -10000,
+            max: 10000,
             slide: function (event, ui) {
                 $("#milliseconds").val(ui.value);
                 $("#seconds").html(ui.value / 1000);
