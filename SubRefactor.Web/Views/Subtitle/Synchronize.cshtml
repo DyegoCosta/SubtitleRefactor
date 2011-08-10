@@ -1,26 +1,37 @@
-﻿@model SubRefactor.Models.SubtitleSynchronizationViewModel
-@{
+﻿@{
     ViewBag.Title = "Synchronization";
     Layout = "~/Views/Shared/Layouts/_Layout.cshtml";
 }
 @section Header {
+    @TagHelper.Css("redmond", "jquery.ui.slider.css")
     @TagHelper.jQuery("jquery.ui.mouse.min.js")
     @TagHelper.jQuery("jquery.ui.slider.min.js")
     @TagHelper.Script("synchronize.js")
 }
 
-@using (Html.BeginForm("Synchronize", "Subtitle", FormMethod.Post, new { enctype = "multipart/form-data" }))
- {     
-    <p>@Html.Raw("Milliseconds: ") @Html.TextBoxFor(m => m.Delay, new { id = "milliseconds" })</p>
-    <p>@Html.Raw("Seconds: ")<span id="seconds">0</span></p>
-    <p>@Html.Raw("Minutes: ")<span id="minutes">0</span></p>
-    
-    @Html.ValidationMessageFor(model => model.Delay)
-    <br/>
-    <div id="slider-range-min">
-    </div>
-    <br/>
-    <p>
-        <input type="submit" id="Synchronize" value="Syncronize" class="button"/>
-    </p>            
-}       
+@if (Session["OriginalSubtitle"] != null && Session["EditableSubtitle"] != null) 
+{ 
+    using (Html.BeginForm("Synchronize", "Subtitle", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {     
+        <p>@Html.Raw("Milliseconds: ") @Html.TextBox("Delay", null, new { id = "milliseconds" })</p>
+        <p>@Html.Raw("Seconds: ")<span id="seconds">0</span></p>
+        <p>@Html.Raw("Minutes: ")<span id="minutes">0</span></p>
+        
+        <br/>
+        <div id="slider-range-min">
+        </div>
+        <br/>
+        <p>
+            <a id="synchronize" class="button">Syncronize</a>
+            <span class="continue">
+                <a id="preview" class="button" onclick="javascript:window.location('@Url.Content("~/Subtitle/Preview")')">Preview</a>
+                <a id="download" class="button" onclick="javascript:window.location('@Url.Content("~/Subtitle/Download")')">Download</a>
+            </span>
+            <span id="confirmationMessage"></span>
+        </p>      
+    }
+}
+else
+{ 
+    <span id="subtitleRequiredMessage" class="ui-state-error">No subtitle loaded.</span> 
+}

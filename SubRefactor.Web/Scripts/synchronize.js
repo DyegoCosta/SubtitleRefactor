@@ -20,5 +20,27 @@
         });
     });
 
-    $("#Synchronize").button();
+    $("#synchronize").click(function () {
+        var milliseconds = $("#milliseconds").val();
+        $.ajax({
+            type: "POST",
+            dataType: 'int',
+            url: "Synchronize",
+            data: 'milliseconds=' + milliseconds,
+            complete: function () {
+                $("#confirmationMessage")
+				.text("Subtitle time line successfully updated.")
+				.addClass("ui-state-highlight")
+                .fadeIn();
+                setTimeout(function () {
+                    $("#confirmationMessage").fadeOut();
+                }, 4000);
+                $(".continue").fadeIn();
+            }
+        });
+    });
+
+    $("#synchronize").button();
+    $("#preview").button();
+    $("#download").button();
 });

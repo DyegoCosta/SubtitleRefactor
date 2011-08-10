@@ -20,42 +20,41 @@ namespace SubRefactor.Controllers
         }
 
         [HttpPost]
-        public ActionResult Synchronize(SubtitleSynchronizationViewModel subtitleSynchronizationViewModel)
+        public ActionResult Synchronize(int milliseconds)
         {
-            subtitleSynchronizationViewModel.Subtitle = (Subtitle)HttpContext.Session["EditableSubtitle"];
+            var subtitle = (Subtitle)Session["EditableSubtitle"];
 
             #region Validations
 
-            if (subtitleSynchronizationViewModel.Delay == 0)
-                ModelState.AddModelError("Delay", "Must not be 0.");
+            if (milliseconds == 0)
+                ModelState.AddModelError("millisseconds", "Must not be 0.");
 
             if (!ModelState.IsValid)
-                return View("Synchronize", model: subtitleSynchronizationViewModel);
+                return View("Synchronize");
 
             #endregion
 
-            dynamic delay = subtitleSynchronizationViewModel.Delay;
+            dynamic delay = milliseconds;
             delay = TimeSpan.FromMilliseconds(delay);
-            
+
             IList<Quote> synchronizedQuotes;
 
             try
             {
-                synchronizedQuotes = new SynchronizationEngine().SyncSubtitle(subtitleSynchronizationViewModel.Subtitle.Quotes, delay);
+                synchronizedQuotes = new SynchronizationEngine().SyncSubtitle(subtitle.Quotes, delay);
             }
             catch (InvalidOperationException ex)
             {
                 ModelState.AddModelError("Delay", ex.Message);
-                return View("Synchronize", subtitleSynchronizationViewModel);
+                return View("Synchronize");
             }
 
-            subtitleSynchronizationViewModel.Subtitle.Quotes = synchronizedQuotes;
-            HttpContext.Session["EditableSubtitle"] = subtitleSynchronizationViewModel.Subtitle;
+            subtitle.Quotes = synchronizedQuotes;
 
-            var stream = new SubtitleHandler().WriteSubtitle(synchronizedQuotes);            
+            Session["EditableSubtitle"] = subtitle;
 
-            return File(stream.GetBuffer(), "text/plain", subtitleSynchronizationViewModel.Subtitle.Name);
-        }
+            return View();            
+        }        
 
         [HttpGet]
         public ActionResult Translate()
@@ -67,9 +66,9 @@ namespace SubRefactor.Controllers
         }
 
         [HttpPost]
-        public ActionResult Translate(SubtitleTranslationViewModel subtitleTranslationViewModel)
+        public ActionResult Translate(SubtitleTranslationViewModel subtitleTranslationViewModel, string email)
         {
-            subtitleTranslationViewModel.Subtitle = (Subtitle)HttpContext.Session["EditableSubtitle"];
+            subtitleTranslationViewModel.Subtitle = (Subtitle)Session["EditableSubtitle"];
 
             #region Validations
 
@@ -80,7 +79,7 @@ namespace SubRefactor.Controllers
                 ModelState.AddModelError("ToLanguage", "Select a language");
 
             if (!ModelState.IsValid)
-                return View(viewName:"Translate", model: subtitleTranslationViewModel);
+                return View(viewName: "Translate", model: subtitleTranslationViewModel);
 
             #endregion
 
@@ -91,19 +90,11 @@ namespace SubRefactor.Controllers
                                         Translators.Bing,
                                         Translators.Google
                                       };
-            
-            foreach (var quote in subtitleTranslationViewModel.Subtitle.Quotes)
-                quote.QuoteLine = new TranslationEngine().Translate(
-                                                            subtitleTranslationViewModel.Translator,
-                                                            quote.QuoteLine,
-                                                            subtitleTranslationViewModel.FromLanguage,
-                                                            subtitleTranslationViewModel.ToLanguage
-                                                         );
-            
-            HttpContext.Session["EditableSubtitle"] = subtitleTranslationViewModel.Subtitle;
 
-            var stream = new SubtitleHandler().WriteSubtitle(subtitleTranslationViewModel.Subtitle.Quotes);
-            return File(stream.GetBuffer(), "text/plain", subtitleTranslationViewModel.Subtitle.Name);
+            new TranslationEngine().Translate(subtitleTranslationViewModel.Subtitle, subtitleTranslationViewModel.Translator,
+                                                subtitleTranslationViewModel.FromLanguage, subtitleTranslationViewModel.ToLanguage);
+
+            return View();
         }
 
         [HttpGet]
@@ -113,7 +104,7 @@ namespace SubRefactor.Controllers
         }
 
         [HttpPost]
-        public ActionResult UploadSubtitleToSession(HttpPostedFileBase file)
+        public ActionResult LoadSubtitleToSession(HttpPostedFileBase file)
         {
             if (Path.GetExtension(file.FileName) != ".srt")
                 return Redirect(Request.UrlReferrer.AbsoluteUri);
@@ -123,15 +114,30 @@ namespace SubRefactor.Controllers
             var subtitle = new Subtitle(quotes);
             subtitle.Name = Path.GetFileName((file.FileName));
 
-            HttpContext.Session["OriginalSubtitle"] = subtitle;
-            HttpContext.Session["EditableSubtitle"] = subtitle;
+            Session["OriginalSubtitle"] = subtitle;
+            Session["EditableSubtitle"] = subtitle;
 
             return Redirect(Request.UrlReferrer.AbsoluteUri);
         }
 
+        [HttpGet]
+        public ActionResult Preview()
+        {
+            return View();
+        }
+
+        public ActionResult Download()
+        {
+            var subtitle = (Subtitle)Session["EditableSubtitle"];
+
+            var stream = new SubtitleHandler().WriteSubtitle(subtitle.Quotes);
+
+            return File(stream.GetBuffer(), "text/plain", subtitle.Name);
+        }
+
         public ActionResult ClearSubtitleSession()
         {
-            HttpContext.Session["OriginalSubtitle"] = null;
+            Session["OriginalSubtitle"] = null;
 
             return Redirect(Request.UrlReferrer.AbsoluteUri);
         }

@@ -7,25 +7,37 @@
 {
     @TagHelper.Script("translate.js")
 }
-
-@using (Html.BeginForm("Translate", "Subtitle", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{ 
-    <span style="font-style: italic;">This process takes a lot of time. For now.</span>
-    <br />
-    <br />
-    <p>
+@if (Session["OriginalSubtitle"] != null && Session["EditableSubtitle"] != null)
+{
+    using (Html.BeginForm("Translate", "Subtitle", FormMethod.Post, new { id = "translate-form", enctype = "multipart/form-data" }))
+     {
+         <p>
         @Html.Label("Translator: ") @Html.DropDownListFor(m => m.Translator, new SelectList(ViewBag.Translators))
     </p>
-    <p>
-        @Html.Label("From: ") @Html.DropDownListFor(m => m.FromLanguage, new SelectList(ViewBag.Languages, "Value", "Key"), "(Select)", new { id = "FromLanguage" })
+         <p>
+        @Html.Label("From: ") @Html.DropDownListFor(m => m.FromLanguage, new SelectList(ViewBag.Languages, "Value", "Key"), "(Select)", new {id = "FromLanguage"})
         @Html.ValidationMessageFor(model => model.FromLanguage)
     </p>
-    <p>
-        @Html.Label("To: ") @Html.DropDownListFor(m => m.ToLanguage, new SelectList(ViewBag.Languages, "Value", "Key"), "(Select)", new { id = "ToLanguage" })
+         <p>
+        @Html.Label("To: ") @Html.DropDownListFor(m => m.ToLanguage, new SelectList(ViewBag.Languages, "Value", "Key"), "(Select)", new {id = "ToLanguage"})
         @Html.ValidationMessageFor(model => model.ToLanguage)
-    </p>        
-    <br/>
-    <p>
-        <input type="submit" id="Translate" class="button" value="Translate" />
     </p>
-}         
+    <p>
+        <a id="translate" class="button">Translate</a>
+        <span id="confirmationMessage"></span>
+    </p>
+     }
+     
+     <div id="dialog-form" class="dialog-form" title="Load subtitle">
+        <p class="validateTips">
+            This process take some minutes, when it's done we send to you</p>
+            <br />
+        <label for="name">
+            Email</label>
+        <input type="text" id="email" name="email" />
+    </div>
+}
+else
+{ 
+    <span id="subtitleRequiredMessage" class="ui-state-error">No subtitle loaded.</span> 
+}

@@ -1,17 +1,17 @@
 ﻿body { background-color: #93B4D5; font-size: 75%; font-family: Verdana, Tahoma, Arial, "Helvetica Neue" , Helvetica, Sans-Serif; margin: 0; padding: 0; color: #696969; }
 
-a:link { color: #034af3; text-decoration: underline; }
-a:visited { color: #505abc; }
-a:hover { color: #1d60ff; text-decoration: none; }
+a:link { color: #034af3; text-decoration: underline;  }
+a:visited { color: #505abc;  }
+a:hover { color: #1d60ff; text-decoration: none;  }
 a:active { color: #12eb87; }
 
-.page { padding: 5px; width: 1000px; position: absolute; left: 50%; margin-left: -500px; }
+.page { padding: 5px; width: 1000px; position: absolute; left: 50%; margin-left: -500px; font-family: 'Josefin Sans', sans-serif;font-size: medium;}
 header, #header {padding-bottom: 5px; position: relative; margin-bottom: 0px; color: #000; padding: 0; }
 #main { width: 1000px; margin-top: 150px; }
 #main span a { cursor: pointer; }
-#footer { padding-top: 50px; text-align: center; line-height: normal; font-size: .9em; }
-#footer a { color: #737B83; text-decoration: none; font-size: small; padding: 0px 5px 0px 5px; }
-.author { margin-top: 25px; }
+#footer { padding-top: 50px; text-align: center; line-height: normal; font-size: .9em; font-family: 'Josefin Sans', sans-serif; }
+#footer a { color: #737B83; text-decoration: none; font-size: medium; padding: 0px 5px 0px 5px; font-family: 'Josefin Sans', sans-serif; }
+.author {font-family: 'Shadows Into Light', cursive;font-size: 14px; margin-top: 25px; }
 
 .field-validation-error { color: #ff0000; }
 .field-validation-valid { display: none; }
@@ -25,7 +25,7 @@ header, #header {padding-bottom: 5px; position: relative; margin-bottom: 0px; co
 .banner { cursor: pointer; float: left; background: url("../../Content/themes/base/images/banner-mini.png"); background-repeat: no-repeat;background-position:left bottom; height: 150px; width: 250px; }
 
 .home-menu { text-align: center; }
-.home-menu a { display: inline-block;  text-decoration: none; color: White; font-family: Verdana, Arial, Helvetica, sans-serif; padding: 0px 10px 0px 10px; margin-left: 50px; margin-right: 50px; }
+.home-menu a { display: inline-block;  text-decoration: none; color: White; font-family: 'Josefin Sans', sans-serif;font-size: large; padding: 0px 10px 0px 10px; margin-left: 50px; margin-right: 50px; }
 .home-menu img { border-style: none; }
 .home-menu a:hover { color: #AC6363; }
 
@@ -35,15 +35,23 @@ ul#menu li a { margin-left: 15px; text-decoration: none; }
 ul#menu li a img { border: none; }
 .menu-container { float: right; margin-top: 115px; background-position: center; position: relative; }
 
-.button { padding: 4px; }
-.coming-soon { opacity: 50; }
+.button { padding: 4px;cursor: pointer !important; font-size: medium !important; font-family: 'Josefin Sans', sans-serif !important;}
 
-.dialog a { padding: 4px; }
-.change-subtitle { color: #737B83 !important; text-decoration: none !important; font-size: 11px !important; }
+.dialog a { padding: 4px; font-family: 'Josefin Sans', sans-serif !important; }
+.change-subtitle { color: #737B83 !important; text-decoration: none !important; font-size: small !important; }
 .change-subtitle:hover { font-weight: bold; }
 
-.quotes-list-partial { overflow: auto;height: 200px;width: 50%;}
-#originalSubtitle { float: left; }
-#editableSubtitle { float: right; }
-
 .about { text-align: center; }
+
+#confirmationMessage { position: relative; }
+.continue { display: none; }
+
+#originalSubtitle { width: 50%; display: inline-block; }
+#editedSubtitle { width: 50%;float: right; display: inline-block; }
+.quote-info { border-style: dashed; border-width: thin; margin: 2px 1px 2px 1px; padding: 4px; }
+.quotes-list-partial { overflow: auto; height: 200px; width: 50%; font-family: Verdana, Tahoma, Arial, "Helvetica Neue" , Helvetica, Sans-Serif;font-size: small !important; }
+.right-list-header { width: 50%; float:right;margin-bottom: 10px;font-size: large;font-weight: bold; }
+.left-list-header { width: 50%; float:left;margin-bottom: 10px;font-size: large;font-weight: bold; }
+.preview { margin-bottom: 20px;border-style: hidden; }
+
+.dialog-form { font-family: 'Josefin Sans', sans-serif;display: none; }

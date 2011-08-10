@@ -1,0 +1,60 @@
+﻿@using SubRefactor.Domain
+@{
+    ViewBag.Title = "Preview";
+    Layout = "~/Views/Shared/Layouts/_Layout.cshtml";
+}
+@section Header {
+    @TagHelper.Script("preview.js")
+}
+@{
+    var originalSubtitle = (SubRefactor.Domain.Subtitle)Session["OriginalSubtitle"];
+    var editedSubtitle = (SubRefactor.Domain.Subtitle)Session["EditableSubtitle"];     
+}
+@if (originalSubtitle != null && editedSubtitle != null)
+{    
+    <div class="left-list-header">
+        Original</div>
+    <div class="right-list-header">
+        Edited</div>
+    <div class="preview">
+        <div id="originalSubtitle" class="quotes-list-partial">
+            @foreach (var quote in originalSubtitle.Quotes)
+            {
+                <div class="quote-info">
+                    <p>
+                        Index: @quote.Index</p>
+                    <p>
+                        Begin: @quote.BeginTimeLine</p>
+                    <p>
+                        End: @quote.EndTimeLine</p>
+                    <p>
+                        Quote: @quote.QuoteLine</p>
+                </div>
+            }
+        </div>
+        <div id="editedSubtitle" class="quotes-list-partial">
+            @foreach (var quote in editedSubtitle.Quotes)
+            {
+                <div class="quote-info">
+                    <p>
+                        Index: @quote.Index</p>
+                    <p>
+                        Begin: @quote.BeginTimeLine</p>
+                    <p>
+                        End: @quote.EndTimeLine</p>
+                    <p>
+                        Quote: @quote.QuoteLine</p>
+                </div>
+            }
+        </div>
+    </div>        
+    <sapn>
+        <a id="back" class="button" onclick="javascript:window.location('@Request.UrlReferrer.AbsoluteUri')">
+            Back</a> <a id="download" class="button" onclick="javascript:window.location('@Url.Content("~/Subtitle/Download")')">
+                Download</a>
+    </sapn>
+}
+else
+{ 
+    <span id="subtitleRequiredMessage" class="ui-state-error">No subtitle loaded.</span> 
+}
