@@ -8,6 +8,7 @@ using SubRefactor.Domain;
 using SubRefactor.Library;
 using SubRefactor.Library.Languages;
 using SubRefactor.Models;
+using System.Threading;
 
 namespace SubRefactor.Controllers
 {
@@ -91,8 +92,11 @@ namespace SubRefactor.Controllers
                                         Translators.Google
                                       };
 
-            new TranslationEngine().Translate(subtitleTranslationViewModel.Subtitle, subtitleTranslationViewModel.Translator,
+            var translationEngine = new TranslationEngine(subtitleTranslationViewModel.Subtitle, subtitleTranslationViewModel.Translator,
                                                 subtitleTranslationViewModel.FromLanguage, subtitleTranslationViewModel.ToLanguage, email);
+
+            var thread = new Thread(new ThreadStart(translationEngine.Translate));
+            thread.Start();
 
             return View("Translate");
         }
@@ -157,6 +161,7 @@ namespace SubRefactor.Controllers
         public ActionResult ClearSubtitleSession()
         {
             Session["OriginalSubtitle"] = null;
+            Session["EditableSubtitle"] = null;
 
             if (Request.UrlReferrer != null)
                 return Redirect(Request.UrlReferrer.AbsoluteUri);
