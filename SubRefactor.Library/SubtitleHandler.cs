@@ -10,6 +10,8 @@ namespace SubRefactor.Library
 {
     public class SubtitleHandler
     {
+        private static MemoryStream _subtitle = new MemoryStream();
+
         /// <summary>
         /// Set the subtitle quotes
         /// </summary>
@@ -79,7 +81,7 @@ namespace SubRefactor.Library
         /// <returns>Subtitle.srt</returns>
         public MemoryStream WriteSubtitle(IList<Quote> quotes)
         {
-            var ms = new MemoryStream();
+            var ms = new MemoryStream();            
 
             using (var sw = new StreamWriter(ms, Encoding.Default))
             {
@@ -87,12 +89,15 @@ namespace SubRefactor.Library
                 {
                     sw.WriteLine(quote.ToString());
                     sw.WriteLine();
-                }
+                }                
 
                 sw.Flush();
-            }
 
-            return ms;
+                ms.Position = 0;
+                ms.CopyTo(_subtitle);
+            }                       
+            
+            return _subtitle;
         }
     }
 }
