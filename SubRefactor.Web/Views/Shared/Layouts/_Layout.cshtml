@@ -29,7 +29,7 @@
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
 
-    </script>
+</script>
 </head>
 <body>
     <div class="page">
@@ -50,9 +50,9 @@
                         <img src="../../../Content/themes/base/images/translate-button-icon.png" class="tipTip"
                             title="Translate" />
                     </a></li>
-                    <li><a href="javascript:void(0);">
+                    <li><a href="@Url.Content("~/Subtitle/Edit")">
                         <img src="../../../Content/themes/base/images/edit-button-icon.png" class="tipTip"
-                            title="Coming soon" />
+                            title="Edit" />
                     </a></li>
                 </ul>
             </div>
@@ -67,7 +67,8 @@
                 @if ((originalSubtitle == null && editedSubtitle == null) && (
                     ViewContext.RouteData.Values["Action"].ToString() == "Synchronize" ||
                     ViewContext.RouteData.Values["Action"].ToString() == "Translate" ||
-                    ViewContext.RouteData.Values["Action"].ToString() == "Preview"))
+                    ViewContext.RouteData.Values["Action"].ToString() == "Preview" ||
+                    ViewContext.RouteData.Values["Action"].ToString() == "Edit"))
                 {
                     @SubtitleHelper.SubtitleLoadHelper("LoadSubtitleToSession")
                 }
