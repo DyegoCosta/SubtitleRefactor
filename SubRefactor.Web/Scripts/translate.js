@@ -44,7 +44,7 @@
                             dataType: "object;string",
                             url: "../Subtitle/Translate",
                             data: $("#translate-form").serialize() + "&email=" + email,
-                            complete: function () {
+                            complete: function () {                                     
                                 $("#confirmationMessage")
 				                    .text("Processing your translation request, when it's done it will be send to your email address.")
 				                    .addClass("ui-state-highlight")
