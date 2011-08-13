@@ -2,4 +2,45 @@
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/Layouts/_Layout.cshtml";
 }
-
+@{
+    ViewBag.Title = "Preview";
+    Layout = "~/Views/Shared/Layouts/_Layout.cshtml";
+}
+@section Header {
+    @TagHelper.Script("edit.js")    
+}
+@{
+    var originalSubtitle = (SubRefactor.Domain.Subtitle)Session["OriginalSubtitle"];
+    var editedSubtitle = (SubRefactor.Domain.Subtitle)Session["EditableSubtitle"];     
+}
+@if (originalSubtitle != null && editedSubtitle != null)
+{        
+    <input type="hidden" id="quotesCount" value="@editedSubtitle.Quotes.Count()"/>
+    
+    <div class="editable-quote-list">
+        <form id="edited-quotes-form">
+        @foreach (var quote in editedSubtitle.Quotes)
+        {
+            <div class="quote-info">
+                <p>
+                    Index: @quote.Index</p>
+                <p>
+                    Begin: @quote.BeginTimeLine</p>
+                <p>
+                    End: @quote.EndTimeLine</p>
+                <p>
+                    Quote: @Html.TextBox(string.Format("Quote_{0}", quote.Index), quote.QuoteLine)</p>
+            </div>
+        }
+        </form>
+    </div>        
+    <p>
+        <a id="edit" class="button">Edit</a> <span class="continue"><a id="preview" class="button" onclick="javascript:window.location('@Url.Content("~/Subtitle/Preview")')">
+            Preview</a> <a id="download" class="button" onclick="javascript:window.location('@Url.Content("~/Subtitle/Download")')">
+                Download</a> </span><span id="confirmationMessage"></span>
+    </p>
+}
+else
+{ 
+    <span id="subtitleRequiredMessage" class="ui-state-error">No subtitle loaded</span> 
+}
