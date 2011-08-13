@@ -53,8 +53,8 @@ namespace SubRefactor.Controllers
 
             Session["EditableSubtitle"] = subtitle;
 
-            return View();            
-        }        
+            return View();
+        }
 
         [HttpGet]
         public ActionResult Translate()
@@ -92,9 +92,9 @@ namespace SubRefactor.Controllers
                                       };
 
             new TranslationEngine().Translate(subtitleTranslationViewModel.Subtitle, subtitleTranslationViewModel.Translator,
-                                                subtitleTranslationViewModel.FromLanguage, subtitleTranslationViewModel.ToLanguage);
+                                                subtitleTranslationViewModel.FromLanguage, subtitleTranslationViewModel.ToLanguage, email);
 
-            return View();
+            return View("Translate");
         }
 
         [HttpGet]
@@ -104,26 +104,45 @@ namespace SubRefactor.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult Edit(FormCollection form)
+        {
+            var editableSubtitle = (Subtitle)Session["EditableSubtitle"];
+
+            for (var i = 0; i < form.Count; i++)
+                editableSubtitle.Quotes[i].QuoteLine = form[i];
+
+            Session["EditableSubtitle"] = editableSubtitle;
+
+            return View();
+        }
+
+        [HttpPost]
         public ActionResult LoadSubtitleToSession(HttpPostedFileBase file)
         {
-            if (Path.GetExtension(file.FileName) != ".srt")
-                return Redirect(Request.UrlReferrer.AbsoluteUri);
+            if (file == null || Path.GetExtension(file.FileName) != ".srt")
+                if (Request.UrlReferrer != null)
+                    return Redirect(Request.UrlReferrer.AbsoluteUri);
+                else
+                    return RedirectToAction("Index", "Home");
 
             var quotes = new SubtitleHandler().ReadSubtitle(file.InputStream);
 
-            var subtitle = new Subtitle(quotes);
-            subtitle.Name = Path.GetFileName((file.FileName));
+            var subtitle = new Subtitle(quotes) { Name = Path.GetFileName((file.FileName)) };
 
             Session["OriginalSubtitle"] = subtitle;
             Session["EditableSubtitle"] = subtitle;
 
-            return Redirect(Request.UrlReferrer.AbsoluteUri);
+            if (Request.UrlReferrer != null)
+                return Redirect(Request.UrlReferrer.AbsoluteUri);
+
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
         public ActionResult Preview()
         {
-            return View();
+            return View("Preview");
         }
 
         public ActionResult Download()
@@ -139,7 +158,10 @@ namespace SubRefactor.Controllers
         {
             Session["OriginalSubtitle"] = null;
 
-            return Redirect(Request.UrlReferrer.AbsoluteUri);
+            if (Request.UrlReferrer != null)
+                return Redirect(Request.UrlReferrer.AbsoluteUri);
+
+            return RedirectToAction("Index", "Home");
         }
 
         #region Ajax

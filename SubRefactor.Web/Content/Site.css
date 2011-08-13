@@ -55,3 +55,5 @@ ul#menu li a img { border: none; }
 .preview { margin-bottom: 20px;border-style: hidden; }
 
 .dialog-form { font-family: 'Josefin Sans', sans-serif;display: none; }
+
+.editable-quote-list { height: 400px;overflow: auto; font-family: Verdana, Tahoma, Arial, "Helvetica Neue" , Helvetica, Sans-Serif;font-size: small !important; }
