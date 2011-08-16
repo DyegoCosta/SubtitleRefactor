@@ -3,7 +3,7 @@ using System.Text;
 
 namespace SubRefactor.Domain
 {
-    public class Quote
+    public class Quote : ICloneable
     {
         public int Index { get; set; }
         public TimeSpan BeginTimeLine { get; set; }
@@ -30,5 +30,10 @@ namespace SubRefactor.Domain
 
             return sbQuote.ToString();
         }
+
+        public object Clone()
+        {
+            return new Quote(Index, BeginTimeLine, EndTimeLine, QuoteLine);
+        }       
     }
 }
