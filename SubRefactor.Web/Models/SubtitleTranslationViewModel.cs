@@ -6,8 +6,6 @@ namespace SubRefactor.Models
 {
     public class SubtitleTranslationViewModel
     {
-        public Subtitle Subtitle { get; set; }
-
         [Required]
         public Translators Translator { get; set; }
 

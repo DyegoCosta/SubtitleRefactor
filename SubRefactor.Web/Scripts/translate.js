@@ -28,6 +28,7 @@
     $("#translate").click(function () {
         $("#dialog-form").dialog({
             autoOpen: true,
+            resizable: false,
             height: 200,
             width: 370,
             modal: true,
@@ -38,23 +39,25 @@
                     $("#email").removeClass("ui-state-error");
                     bValid = checkEmail();
                     if (bValid) {
+                        $("#dialog-form").hide();
                         var email = $("#email").val();
                         $.ajax({
                             type: "POST",
                             dataType: "object;string",
                             url: "../Subtitle/Translate",
                             data: $("#translate-form").serialize() + "&email=" + email,
-                            complete: function () {                                     
+                            complete: function () {
                                 $("#confirmationMessage")
 				                    .text("Processing your translation request, when it's done it will be send to your email address.")
 				                    .addClass("ui-state-highlight")
                                     .fadeIn();
-                                    
+
                                 setTimeout(function () {
-                                        $("#confirmationMessage").fadeOut();
-                                    }, 4000);                                
+                                    $("#confirmationMessage").fadeOut();
+                                }, 4000);
                             }
                         });
+                        $("#dialog-form").close();
                     }
                 }
             }

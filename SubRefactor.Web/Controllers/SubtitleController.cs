@@ -14,6 +14,8 @@ namespace SubRefactor.Controllers
 {
     public class SubtitleController : Controller
     {
+        private Subtitle _subtitle;
+
         [HttpGet]
         public ActionResult Synchronize()
         {
@@ -23,8 +25,8 @@ namespace SubRefactor.Controllers
         [HttpPost]
         public ActionResult Synchronize(int milliseconds)
         {
-            var subtitle = (Subtitle)Session["EditableSubtitle"];
-
+            _subtitle = (Subtitle)Session["EditableSubtitle"];
+            
             #region Validations
 
             if (milliseconds == 0)
@@ -38,11 +40,9 @@ namespace SubRefactor.Controllers
             dynamic delay = milliseconds;
             delay = TimeSpan.FromMilliseconds(delay);
 
-            IList<Quote> synchronizedQuotes;
-
             try
             {
-                synchronizedQuotes = new SynchronizationEngine().SyncSubtitle(subtitle.Quotes, delay);
+                _subtitle.Quotes = new SynchronizationEngine().SyncSubtitle(_subtitle.Quotes, delay);
             }
             catch (InvalidOperationException ex)
             {
@@ -50,9 +50,7 @@ namespace SubRefactor.Controllers
                 return View("Synchronize");
             }
 
-            subtitle.Quotes = synchronizedQuotes;
-
-            Session["EditableSubtitle"] = subtitle;
+            Session["EditableSubtitle"] = _subtitle.Clone();
 
             return View();
         }
@@ -69,7 +67,15 @@ namespace SubRefactor.Controllers
         [HttpPost]
         public ActionResult Translate(SubtitleTranslationViewModel subtitleTranslationViewModel, string email)
         {
-            subtitleTranslationViewModel.Subtitle = (Subtitle)Session["EditableSubtitle"];
+            _subtitle = (Subtitle)Session["EditableSubtitle"];            
+
+            ViewBag.Languages = subtitleTranslationViewModel.Translator == Translators.Bing ?
+                                                                            new ServicesLanguages().GetBingLanguages() :
+                                                                            new ServicesLanguages().GetGoogleLanguages();
+            ViewBag.Translators = new List<Translators>() { 
+                                        Translators.Bing,
+                                        Translators.Google
+                                      };
 
             #region Validations
 
@@ -80,19 +86,11 @@ namespace SubRefactor.Controllers
                 ModelState.AddModelError("ToLanguage", "Select a language");
 
             if (!ModelState.IsValid)
-                return View(viewName: "Translate", model: subtitleTranslationViewModel);
+                return View("Translate", subtitleTranslationViewModel);
 
             #endregion
-
-            ViewBag.Languages = subtitleTranslationViewModel.Translator == Translators.Bing ?
-                                                                            new ServicesLanguages().GetBingLanguages() :
-                                                                            new ServicesLanguages().GetGoogleLanguages();
-            ViewBag.Translators = new List<Translators>() { 
-                                        Translators.Bing,
-                                        Translators.Google
-                                      };
-
-            var translationEngine = new TranslationEngine(subtitleTranslationViewModel.Subtitle, subtitleTranslationViewModel.Translator,
+            
+            var translationEngine = new TranslationEngine((Subtitle)_subtitle.Clone(), subtitleTranslationViewModel.Translator,
                                                 subtitleTranslationViewModel.FromLanguage, subtitleTranslationViewModel.ToLanguage, email);
 
             var thread = new Thread(new ThreadStart(translationEngine.Translate));
@@ -111,12 +109,12 @@ namespace SubRefactor.Controllers
         [ValidateInput(false)]
         public ActionResult Edit(FormCollection form)
         {
-            var editableSubtitle = (Subtitle)Session["EditableSubtitle"];
+            _subtitle = (Subtitle)Session["EditableSubtitle"];
 
             for (var i = 0; i < form.Count; i++)
-                editableSubtitle.Quotes[i].QuoteLine = form[i];
+                _subtitle.Quotes[i].QuoteLine = form[i];
 
-            Session["EditableSubtitle"] = editableSubtitle;
+            Session["EditableSubtitle"] = _subtitle;
 
             return View();
         }
@@ -132,10 +130,10 @@ namespace SubRefactor.Controllers
 
             var quotes = new SubtitleHandler().ReadSubtitle(file.InputStream);
 
-            var subtitle = new Subtitle(quotes) { Name = Path.GetFileName((file.FileName)) };
+            _subtitle = new Subtitle(quotes) { Name = Path.GetFileName((file.FileName)) };
 
-            Session["OriginalSubtitle"] = subtitle;
-            Session["EditableSubtitle"] = subtitle;
+            Session["OriginalSubtitle"] = _subtitle;
+            Session["EditableSubtitle"] = _subtitle.Clone();
 
             if (Request.UrlReferrer != null)
                 return Redirect(Request.UrlReferrer.AbsoluteUri);
@@ -151,11 +149,11 @@ namespace SubRefactor.Controllers
 
         public ActionResult Download()
         {
-            var subtitle = (Subtitle)Session["EditableSubtitle"];
+            _subtitle = (Subtitle)Session["EditableSubtitle"];
 
-            var stream = new SubtitleHandler().WriteSubtitle(subtitle.Quotes);
+            var stream = new SubtitleHandler().WriteSubtitle(_subtitle.Quotes);
 
-            return File(stream.GetBuffer(), "text/plain", subtitle.Name);
+            return File(stream.GetBuffer(), "text/plain", _subtitle.Name);
         }
 
         public ActionResult ClearSubtitleSession()

@@ -1,5 +1,4 @@
-﻿@using SubRefactor.Domain
-@{
+﻿@{
     ViewBag.Title = "Preview";
     Layout = "~/Views/Shared/Layouts/_Layout.cshtml";
 }
@@ -7,8 +6,8 @@
     @TagHelper.Script("preview.js")
 }
 @{
-    var originalSubtitle = (SubRefactor.Domain.Subtitle)Session["OriginalSubtitle"];
-    var editedSubtitle = (SubRefactor.Domain.Subtitle)Session["EditableSubtitle"];     
+    var originalSubtitle = (SubRefactor.Domain.Subtitle) Session["OriginalSubtitle"];
+    var editedSubtitle = (SubRefactor.Domain.Subtitle) Session["EditableSubtitle"];    
 }
 @if (originalSubtitle != null && editedSubtitle != null)
 {    
@@ -48,11 +47,11 @@
             }
         </div>
     </div>        
-    <sapn>
+    <span>
         <a id="back" class="button" onclick="javascript:window.location('@Request.UrlReferrer.AbsoluteUri')">
             Back</a> <a id="download" class="button" onclick="javascript:window.location('@Url.Content("~/Subtitle/Download")')">
                 Download</a>
-    </sapn>
+    </span>
 }
 else
 { 

@@ -1,13 +1,12 @@
-﻿using System.IO;
-using SubRefactor.Services;
+﻿using SubRefactor.Services;
 using SubRefactor.Domain;
 using SubRefactor.Library.Infrastructure;
 namespace SubRefactor.Library
 {
     public class TranslationEngine
     {
-        protected string BingApiId = "038694F962E12E433B37594FC55A89BD5F12FDAF";
-        protected string GoogleApiId = "AIzaSyBOfomKkck9IAImlFP_uG80a2HT9giUUno";
+        protected const string BingApiId = "038694F962E12E433B37594FC55A89BD5F12FDAF";
+        protected const string GoogleApiId = "AIzaSyBOfomKkck9IAImlFP_uG80a2HT9giUUno";
         private readonly Subtitle _subtitle;
         private readonly Translators _api;
         private readonly string _fromLanguage;
@@ -24,17 +23,20 @@ namespace SubRefactor.Library
         }
 
         public void Translate()
-        {           
-            foreach (var quote in _subtitle.Quotes)
-                switch (_api)
-                {
-                    case Translators.Bing:
-                        quote.QuoteLine = new MicrosoftTranslatorProxy().Translate(BingApiId, quote.QuoteLine, _fromLanguage, _toLanguage, "text/html", "general");
-                        break;
-                    case Translators.Google:
-                        quote.QuoteLine = new GoogleTranslatorService().Translate(quote.QuoteLine, _fromLanguage, _toLanguage);
-                        break;
-                }
+        {
+            switch (_api)
+            {
+                case Translators.Bing:
+                    foreach (var quote in _subtitle.Quotes)
+                        quote.QuoteLine = new MicrosoftTranslatorProxy().Translate(BingApiId, quote.QuoteLine, _fromLanguage,
+                                                                                   _toLanguage, "text/html", "general");
+                    break;
+                case Translators.Google:
+                    foreach (var quote in _subtitle.Quotes)
+                        quote.QuoteLine = new GoogleTranslatorService().Translate(quote.QuoteLine, _fromLanguage,
+                                                                                  _toLanguage);
+                    break;
+            }
 
             var stream = new SubtitleHandler().WriteSubtitle(_subtitle.Quotes);
 

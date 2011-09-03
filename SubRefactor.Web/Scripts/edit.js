@@ -1,8 +1,6 @@
 ﻿$(document).ready(function () {
-
-    $("#edit").button();
-    $("#preview").button();
-    $("#download").button();
+    
+    $("#edit, #preview, #download").button();    
 
     $("#edit").click(function () {
         $.ajax({

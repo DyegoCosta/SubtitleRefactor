@@ -40,7 +40,5 @@
         });
     });
 
-    $("#synchronize").button();
-    $("#preview").button();
-    $("#download").button();
+    $("#synchronize, #preview, #download").button();
 });

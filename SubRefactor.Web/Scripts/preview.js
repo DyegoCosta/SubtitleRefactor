@@ -5,7 +5,6 @@
     $("#editedSubtitle").scroll(function () {
         $("#originalSubtitle").scrollTop($("#editedSubtitle").scrollTop());
     });
-    
-    $("#back").button();
-    $("#download").button();
+
+    $("#back, #download").button();    
 });

@@ -10,8 +10,8 @@
     @TagHelper.Script("edit.js")    
 }
 @{
-    var originalSubtitle = (SubRefactor.Domain.Subtitle)Session["OriginalSubtitle"];
-    var editedSubtitle = (SubRefactor.Domain.Subtitle)Session["EditableSubtitle"];     
+    var originalSubtitle = (SubRefactor.Domain.Subtitle) Session["OriginalSubtitle"];
+    var editedSubtitle = (SubRefactor.Domain.Subtitle) Session["EditableSubtitle"];     
 }
 @if (originalSubtitle != null && editedSubtitle != null)
 {        

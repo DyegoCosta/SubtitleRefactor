@@ -3,25 +3,31 @@
         var url = new System.Web.Mvc.UrlHelper(Context.Request.RequestContext);    
     <script type="text/javascript" src="@url.Content("~/Scripts/" + @scriptName)"></script>
 }
-
 @helper jQuery(string jQueryName)
-    {
+    {    
         var url = new System.Web.Mvc.UrlHelper(Context.Request.RequestContext);        
     <script type="text/javascript" src="@url.Content("~/Scripts/jquery/" + @jQueryName)"></script>
 }
-
+@helper jQuery(string CDNUrl, string localFileName)
+    {
+        var url = new System.Web.Mvc.UrlHelper(Context.Request.RequestContext);            
+    <script type="text/javascript" src="@CDNUrl"></script>        
+    <script type="text/javascript">
+        if (typeof jQuery == 'undefined')
+            document.write(unscape("%3Cscript type='text/javascript' src='@url.Content("~/Scripts/jquery/" + localFileName)'%3E" +
+                "%3Cscript%3E"));
+    </script>
+}
 @helper Css(string cssName)
     {
         var url = new System.Web.Mvc.UrlHelper(Context.Request.RequestContext);
     <link href="@url.Content("~/Content/" + @cssName)" rel="stylesheet" type="text/css" />
 }
-
 @helper Css(string theme, string cssName)
     {
         var url = new System.Web.Mvc.UrlHelper(Context.Request.RequestContext);
     <link href="@url.Content(string.Format("~/Content/themes/{0}/{1}", @theme, @cssName))" rel="stylesheet" type="text/css" />
 }
-
 @helper CssFromUrl(string cssUrl)
     {    
     <link href="@cssUrl" rel="stylesheet" type="text/css" />

@@ -63,8 +63,8 @@ namespace SubRefactor.Library
                     {
                         if (quote.QuoteLine == null)
                             quote.QuoteLine = line;
-                        else                        
-                            quote.QuoteLine += "\r\n" + line;                        
+                        else
+                            quote.QuoteLine += "\r\n" + line;
                     }
                 }
 

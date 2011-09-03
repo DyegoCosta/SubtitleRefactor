@@ -15,7 +15,7 @@ namespace SubRefactor.Library
         /// <returns>The new subtitle synchronized stream</returns>
         public IList<Quote> SyncSubtitle(IList<Quote> quotes, TimeSpan delay)
         {
-            foreach (Quote quote in quotes.OrderBy(q => q.Index))
+            foreach (var quote in quotes.OrderBy(q => q.Index))
             {
                 var beginTime = quote.BeginTimeLine.Add(delay);
                 if (beginTime.Ticks < 0)

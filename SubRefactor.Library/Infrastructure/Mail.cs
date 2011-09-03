@@ -16,12 +16,13 @@ namespace SubRefactor.Library.Infrastructure
                 mail.To.Add(toEmail);
                 mail.Subject = subject;
                 mail.Body = body;
+                mail.ReplyToList.Add(new MailAddress("contact@subrefactor.com"));
                
                 attachment.Position = 0;
                 mail.Attachments.Add(new Attachment(attachment, attachmentName));
 
                 smtpClient.Port = port;
-                smtpClient.Credentials = new System.Net.NetworkCredential("subrefactor@gmail.com", "rqrqweowqq0162");
+                smtpClient.Credentials = new System.Net.NetworkCredential("translate@subrefactor.com", "rqrqweowqq");
                 smtpClient.EnableSsl = true;
 
                 smtpClient.Send(mail);
