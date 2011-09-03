@@ -44,7 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Infrastructure\Mail.cs" />
-    <Compile Include="Languages\ServicesLanguages.cs" />
+    <Compile Include="ServicesLanguages.cs" />
     <Compile Include="SubtitleHandler.cs" />
     <Compile Include="Translators.cs" />
     <Compile Include="Infrastructure\Extensions.cs" />

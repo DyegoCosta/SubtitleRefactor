@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Collections;
 
-namespace SubRefactor.Library.Languages
+namespace SubRefactor.Library
 {
     public class ServicesLanguages
     {

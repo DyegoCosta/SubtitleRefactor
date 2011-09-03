@@ -14,11 +14,23 @@ namespace SubRefactor.Domain
         public string Name { get; set; }
         public string Release { get; set; }
         public IList<Quote> Quotes { get; set; }
-
-        public object Clone()
+        
+        public Subtitle Clone()
         {
             IList<Quote> quotesCopy = Quotes.ToList();
-            return new Subtitle(quotesCopy) { Name = this.Name };
+            return new Subtitle(quotesCopy) {Name = Name, Release = Release};            
+        }
+
+        /// <summary>
+        /// Creates a new object that is a copy of the current instance.
+        /// </summary>
+        /// <returns>
+        /// A new object that is a copy of this instance.
+        /// </returns>
+        /// <filterpriority>2</filterpriority>
+        object ICloneable.Clone()
+        {
+            return MemberwiseClone();
         }
     }
 }

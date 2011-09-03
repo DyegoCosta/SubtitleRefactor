@@ -34,7 +34,7 @@
             modal: true,
             dialogClass: "dialog",
             buttons: {
-                "Send": function () {
+                Send: function () {
                     var bValid = true;
                     $("#email").removeClass("ui-state-error");
                     bValid = checkEmail();
@@ -57,9 +57,13 @@
                                 }, 4000);
                             }
                         });
-                        $("#dialog-form").close();
+                        $(this).dialog("close");
                     }
+                },
+                Cancel: function () {
+                    $(this).dialog("close");
                 }
+
             }
         });
     });

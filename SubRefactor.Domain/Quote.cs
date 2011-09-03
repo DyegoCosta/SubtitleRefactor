@@ -31,9 +31,21 @@ namespace SubRefactor.Domain
             return sbQuote.ToString();
         }
 
-        public object Clone()
+        public Quote Clone()
         {
             return new Quote(Index, BeginTimeLine, EndTimeLine, QuoteLine);
-        }       
+        }
+
+        /// <summary>
+        /// Creates a new object that is a copy of the current instance.
+        /// </summary>
+        /// <returns>
+        /// A new object that is a copy of this instance.
+        /// </returns>
+        /// <filterpriority>2</filterpriority>
+        object ICloneable.Clone()
+        {
+            return MemberwiseClone();
+        }
     }
 }

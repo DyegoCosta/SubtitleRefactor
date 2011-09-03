@@ -6,7 +6,6 @@ using System.Web;
 using System.Web.Mvc;
 using SubRefactor.Domain;
 using SubRefactor.Library;
-using SubRefactor.Library.Languages;
 using SubRefactor.Models;
 using System.Threading;
 
@@ -26,7 +25,9 @@ namespace SubRefactor.Controllers
         public ActionResult Synchronize(int milliseconds)
         {
             _subtitle = (Subtitle)Session["EditableSubtitle"];
-            
+
+            var cloneSubtitle = _subtitle.Clone();
+
             #region Validations
 
             if (milliseconds == 0)
@@ -38,11 +39,11 @@ namespace SubRefactor.Controllers
             #endregion
 
             dynamic delay = milliseconds;
-            delay = TimeSpan.FromMilliseconds(delay);
+            delay = TimeSpan.FromMilliseconds(delay);            
 
             try
             {
-                _subtitle.Quotes = new SynchronizationEngine().SyncSubtitle(_subtitle.Quotes, delay);
+                cloneSubtitle.Quotes = new SynchronizationEngine().SyncSubtitle(cloneSubtitle.Quotes, delay);
             }
             catch (InvalidOperationException ex)
             {
@@ -50,7 +51,7 @@ namespace SubRefactor.Controllers
                 return View("Synchronize");
             }
 
-            Session["EditableSubtitle"] = _subtitle.Clone();
+            Session["EditableSubtitle"] = cloneSubtitle;
 
             return View();
         }
