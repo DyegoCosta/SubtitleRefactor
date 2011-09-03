@@ -3,7 +3,7 @@ using System.Text;
 
 namespace SubRefactor.Domain
 {
-    public class Quote : ICloneable
+    public class Quote
     {
         public int Index { get; set; }
         public TimeSpan BeginTimeLine { get; set; }
@@ -34,18 +34,6 @@ namespace SubRefactor.Domain
         public Quote Clone()
         {
             return new Quote(Index, BeginTimeLine, EndTimeLine, QuoteLine);
-        }
-
-        /// <summary>
-        /// Creates a new object that is a copy of the current instance.
-        /// </summary>
-        /// <returns>
-        /// A new object that is a copy of this instance.
-        /// </returns>
-        /// <filterpriority>2</filterpriority>
-        object ICloneable.Clone()
-        {
-            return MemberwiseClone();
         }
     }
 }

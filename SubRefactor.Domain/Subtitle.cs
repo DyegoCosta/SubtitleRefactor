@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace SubRefactor.Domain
 {
-    public class Subtitle : ICloneable
+    public class Subtitle
     {
         public Subtitle(IList<Quote> quotes)
         {
@@ -14,23 +14,12 @@ namespace SubRefactor.Domain
         public string Name { get; set; }
         public string Release { get; set; }
         public IList<Quote> Quotes { get; set; }
-        
+
         public Subtitle Clone()
         {
-            IList<Quote> quotesCopy = Quotes.ToList();
-            return new Subtitle(quotesCopy) {Name = Name, Release = Release};            
-        }
+            var quotesCopy = Quotes.Select(quote => quote.Clone()).ToList();
 
-        /// <summary>
-        /// Creates a new object that is a copy of the current instance.
-        /// </summary>
-        /// <returns>
-        /// A new object that is a copy of this instance.
-        /// </returns>
-        /// <filterpriority>2</filterpriority>
-        object ICloneable.Clone()
-        {
-            return MemberwiseClone();
+            return new Subtitle(quotesCopy) { Name = Name, Release = Release };
         }
     }
 }
