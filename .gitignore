@@ -1,3 +1,9 @@
+*.suo
+
+*.sln.docstates
+
+*.sln.docstates
+.suo
 SubRefactor.Domain/obj
 
 SubRefactor.Domain/bin
@@ -24,16 +30,7 @@ SubRefactor.Web/bin
 
 
 SubRefactor.Web.Tests/obj
-
 SubRefactor.Web.Tests/bin
-
-
-SubRefactor.suo
-
-SubRefactor.sln.docstates
-
-SubRefactor.sln.docstates
-.suo
 TestResults
 _ReSharper.SubRefactor
 SubRefactor.6.0.ReSharper

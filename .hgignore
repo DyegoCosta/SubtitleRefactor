@@ -39,6 +39,6 @@ _ReSharper.SubRefactor
 SubRefactor.6.0.ReSharper
 SubRefactor.6.0.ReSharper.user
 SubRefactor.6.0.ReSharper.suo
-.gitignore
+*.gitignore
 Local
 TraceAndTestImpact
