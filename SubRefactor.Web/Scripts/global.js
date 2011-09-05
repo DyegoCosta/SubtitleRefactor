@@ -8,5 +8,4 @@
         uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/G2ORVCNwtmYT2Wt2qf8w.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
     })();
-
 });

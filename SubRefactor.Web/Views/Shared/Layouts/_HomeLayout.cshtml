@@ -5,9 +5,9 @@
     @TagHelper.CssFromUrl(@"http://fonts.googleapis.com/css?family=Josefin+Sans|Shadows+Into+Light|Abel")
     @TagHelper.Css("Site.css")
     @TagHelper.Css("tipTip.css", "redmond")
-    @TagHelper.Css("redmond", "jquery-ui-1.8.14.custom.css")    
+    @TagHelper.Css("redmond", "jquery-ui-1.8.14.custom.css")
     @TagHelper.jQuery("http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.6.2.min.js", "jquery-1.6.2.min.js")
-    @TagHelper.jQuery("http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.12/jquery-ui.min.js", "jquery-ui-1.8.12.custom.min.js")        
+    @TagHelper.jQuery("http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.12/jquery-ui.min.js", "jquery-ui-1.8.12.custom.min.js")
     @TagHelper.Script("global.js")
     @TagHelper.jQuery("jquery.tipTip.min.js")
     <script type="text/javascript">
@@ -22,7 +22,7 @@
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
 
-</script>
+    </script>
 </head>
 <body>
     <div class="page">
@@ -34,6 +34,13 @@
                 @Html.ActionLink("Home", "Index", "Home") ▪
                 @Html.ActionLink("About", "About", "Home") ▪ <a href="https://github.com/dyego-costa/SubtitleRefactor"
                     target="new">GitHub</a>
+                <div class="facebook-button">
+                    <div id="fb-root">
+                    </div>
+                    <script src="http://connect.facebook.net/en_US/all.js#appId=143381015754341&amp;xfbml=1"></script>
+                    <fb:like href="https://www.facebook.com/pages/Subrefactor/257062084324696" send="false"
+                        layout="button_count" width="45" show_faces="false" font=""></fb:like>
+                </div>
                 <div class="author">
                     Developed by <a href="http://about.me/dyego.costa" target="new">Dyego Costa</a></div>
             </div>

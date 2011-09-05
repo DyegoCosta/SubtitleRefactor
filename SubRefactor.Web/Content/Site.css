@@ -29,6 +29,8 @@ header, #header {padding-bottom: 5px; position: relative; margin-bottom: 0px; co
 .home-menu img { border-style: none; }
 .home-menu a:hover { color: #AC6363; }
 
+.facebook-button { display: inline-block !important; }
+
 ul#menu { margin: 0; text-align: right; }
 ul#menu li { display: inline; list-style: none; }
 ul#menu li a { margin-left: 15px; text-decoration: none; }

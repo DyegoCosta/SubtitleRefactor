@@ -171,9 +171,6 @@
     <Content Include="App_Code\TagHelper.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Code\FeedbackHelper.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Home\About.cshtml" />
   </ItemGroup>
   <ItemGroup>
