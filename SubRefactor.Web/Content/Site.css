@@ -21,7 +21,7 @@ header, #header {padding-bottom: 5px; position: relative; margin-bottom: 0px; co
 
 .content { padding: 20px; background-color: #DFE1F1; }
 
-.home-banner { background: url("../../Content/themes/base/images/bigger-banner.png"); background-repeat: no-repeat;background-position: center; background-color: #93B4D5;height: 520px; }
+.home-banner { background: url("../../Content/themes/base/images/bigger-banner.png"); background-repeat: no-repeat;background-position: center; background-color: #93B4D5;height: 450px;padding-bottom:30px; }
 .banner { cursor: pointer; float: left; background: url("../../Content/themes/base/images/banner-mini.png"); background-repeat: no-repeat;background-position:left bottom; height: 150px; width: 250px; }
 
 .home-menu { text-align: center; }
