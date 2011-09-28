@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System;
 using System.Linq;
 
 namespace SubRefactor.Domain
@@ -13,6 +12,7 @@ namespace SubRefactor.Domain
 
         public string Name { get; set; }
         public string Release { get; set; }
+        public string Url { get; set; }
         public IList<Quote> Quotes { get; set; }
 
         public Subtitle Clone()
