@@ -8,6 +8,7 @@ using SubRefactor.Domain;
 using SubRefactor.Library;
 using SubRefactor.Models;
 using System.Threading;
+using SubRefactor.Models.Subtitle;
 
 namespace SubRefactor.Controllers
 {
@@ -15,13 +16,13 @@ namespace SubRefactor.Controllers
     {
         private Subtitle _subtitle;
 
-        [HttpGet]
+        [HttpGet, Authorize]
         public ActionResult Synchronize()
         {
             return View("Synchronize");
         }
 
-        [HttpPost]
+        [HttpPost, Authorize]
         public ActionResult Synchronize(int milliseconds)
         {
             _subtitle = (Subtitle)Session["EditableSubtitle"];
@@ -56,7 +57,7 @@ namespace SubRefactor.Controllers
             return View();
         }
 
-        [HttpGet]
+        [HttpGet, Authorize]
         public ActionResult Translate()
         {
             ViewBag.Languages = new ServicesLanguages().GetBingLanguages();
@@ -65,7 +66,7 @@ namespace SubRefactor.Controllers
             return View("Translate");
         }
 
-        [HttpPost]
+        [HttpPost, Authorize]
         public ActionResult Translate(SubtitleTranslationViewModel subtitleTranslationViewModel, string email)
         {
             _subtitle = (Subtitle)Session["EditableSubtitle"];            
@@ -100,13 +101,13 @@ namespace SubRefactor.Controllers
             return View("Translate");
         }
 
-        [HttpGet]
+        [HttpGet, Authorize]
         public ActionResult Edit()
         {
             return View();
         }
 
-        [HttpPost]
+        [HttpPost, Authorize]
         [ValidateInput(false)]
         public ActionResult Edit(FormCollection form)
         {
@@ -120,7 +121,7 @@ namespace SubRefactor.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpPost, Authorize]
         public ActionResult LoadSubtitleToSession(HttpPostedFileBase file)
         {
             if (file == null || Path.GetExtension(file.FileName) != ".srt")
@@ -142,7 +143,7 @@ namespace SubRefactor.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        [HttpGet]
+        [HttpGet, Authorize]
         public ActionResult Preview()
         {
             return View("Preview");

@@ -1,0 +1,80 @@
+﻿@using SubRefactor.Models.Account
+@model RegisterLogOnViewModel
+@{
+    ViewBag.Title = "Access";
+    Layout = "~/Views/Shared/Layouts/_Layout.cshtml";
+}
+@TagHelper.jQuery("jquery.validate.min.js")
+@TagHelper.jQuery("jquery.validate.unobtrusive.min.js")
+@Html.ValidationSummary(true, "Login was unsuccessful. Please correct the errors and try again.")
+@using (Html.BeginForm("Register"))
+{
+    <div class="register-form">
+        <h2>
+            Register</h2>
+        <div class="editor-label">
+            @Html.LabelFor(m => m.RegisterViewModel.UserName)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(m => m.RegisterViewModel.UserName)
+            @Html.ValidationMessageFor(m => m.RegisterViewModel.UserName)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(m => m.RegisterViewModel.Email)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(m => m.RegisterViewModel.Email)
+            @Html.ValidationMessageFor(m => m.RegisterViewModel.Email)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(m => m.RegisterViewModel.Password)
+        </div>
+        <div class="editor-field">
+            @Html.PasswordFor(m => m.RegisterViewModel.Password)
+            @Html.ValidationMessageFor(m => m.RegisterViewModel.Password)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(m => m.RegisterViewModel.ConfirmPassword)
+        </div>
+        <div class="editor-field">
+            @Html.PasswordFor(m => m.RegisterViewModel.ConfirmPassword)
+            @Html.ValidationMessageFor(m => m.RegisterViewModel.ConfirmPassword)
+        </div>
+        <p>
+            <input type="submit" value="Register" />
+        </p>
+        <br />
+    </div>
+}
+@using (Html.BeginForm("LogOn", null, new { returnUrl = Request.QueryString["returnUrl"] }))
+{    
+    <div class="login-form">
+        <h2>
+            Log On</h2>
+        <div class="editor-label">
+            @Html.LabelFor(m => m.LogOnViewModel.UserName)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(m => m.LogOnViewModel.UserName)
+            @Html.ValidationMessageFor(m => m.LogOnViewModel.UserName)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(m => m.LogOnViewModel.Password)
+        </div>
+        <div class="editor-field">
+            @Html.PasswordFor(m => m.LogOnViewModel.Password)
+            @Html.ValidationMessageFor(m => m.LogOnViewModel.Password)
+        </div>
+        <div class="editor-label">
+            @Html.CheckBoxFor(m => m.LogOnViewModel.RememberMe)
+            @Html.LabelFor(m => m.LogOnViewModel.RememberMe)
+        </div>
+        <p>
+            <input type="submit" value="Log On" />
+        </p>
+        <br />
+    </div>    
+    <div>
+        <fb:login-button>Login with Facebook</fb:login-button>
+    </div>
+}

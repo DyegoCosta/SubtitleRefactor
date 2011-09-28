@@ -33,21 +33,24 @@
             </div>
             <div class="menu-container">
                 <ul id="menu">
+                    <li><a href="javascript:void(0);">
+                        <img src="../../../Content/themes/base/images/subrefactor-it-icon.png" class="tipTip"
+                            title="SubRefactor it!" alt="" /></a></li>
                     <li><a href="@Url.Content("~/Subtitle/Preview")">
                         <img src="../../../Content/themes/base/images/preview-button-icon.png" class="tipTip"
-                            title="Preview" />
+                            title="Preview" alt="" />
                     </a></li>
                     <li><a href="@Url.Content("~/Subtitle/Synchronize")">
                         <img src="../../../Content/themes/base/images/sync-button-icon.png" class="tipTip"
-                            title="Synchronize" />
+                            title="Synchronize" alt="" />
                     </a></li>
                     <li><a href="@Url.Content("~/Subtitle/Translate")">
                         <img src="../../../Content/themes/base/images/translate-button-icon.png" class="tipTip"
-                            title="Translate" />
+                            title="Translate" alt="" />
                     </a></li>
                     <li><a href="@Url.Content("~/Subtitle/Edit")">
                         <img src="../../../Content/themes/base/images/edit-button-icon.png" class="tipTip"
-                            title="Edit" />
+                            title="Edit" alt="" />
                     </a></li>
                 </ul>
             </div>
@@ -76,20 +79,20 @@
                 @RenderBody()
             </div>
         </div>
-                    <div id="footer">
-                @Html.ActionLink("Home", "Index", "Home") ▪
-                @Html.ActionLink("About", "About", "Home") ▪ <a href="https://github.com/dyego-costa/SubtitleRefactor"
-                    target="new">GitHub</a>
-                <div class="facebook-button">
-                    <div id="fb-root">
-                    </div>
-                    <script src="http://connect.facebook.net/en_US/all.js#appId=143381015754341&amp;xfbml=1"></script>
-                    <fb:like href="https://www.facebook.com/pages/Subrefactor/257062084324696" send="false"
-                        layout="button_count" width="45" show_faces="false" font=""></fb:like>
+        <div id="footer">
+            @Html.ActionLink("Home", "Index", "Home") ▪
+            @Html.ActionLink("About", "About", "Home") ▪ <a href="https://github.com/dyego-costa/SubtitleRefactor"
+                target="new">GitHub</a>
+            <div class="facebook-button">
+                <div id="fb-root">
                 </div>
-                <div class="author">
-                    Developed by <a href="http://about.me/dyego.costa" target="new">Dyego Costa</a></div>
+                <script src="http://connect.facebook.net/en_US/all.js#appId=143381015754341&amp;xfbml=1"></script>
+                <fb:like href="https://www.facebook.com/pages/Subrefactor/257062084324696" send="false"
+                    layout="button_count" width="45" show_faces="false" font=""></fb:like>
             </div>
+            <div class="author">
+                Developed by <a href="http://about.me/dyego.costa" target="new">Dyego Costa</a></div>
+        </div>
     </div>
 </body>
 </html>
