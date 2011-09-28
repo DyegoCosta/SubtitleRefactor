@@ -9,6 +9,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubRefactor.Web", "SubRefac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubRefactor.Services", "SubRefactor.Services\SubRefactor.Services.csproj", "{C335FB5A-C601-47B9-ACE3-53BD8EEC7D29}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubRefactor.Repository", "SubRefactor.Repository\SubRefactor.Repository.csproj", "{F9457CDF-A269-4C6F-B4FD-E835942D7541}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubRefactor.IRepository", "SubRefactor.IRepository\SubRefactor.IRepository.csproj", "{9357212B-D58F-4640-84BE-10D36B8C99F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubRefactor.IoC", "SubRefactor.IoC\SubRefactor.IoC.csproj", "{9AD24676-CDAC-4A92-8200-9049BA671A02}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = SubRefactor.vsmdi
@@ -34,8 +40,23 @@ Global
 		{C335FB5A-C601-47B9-ACE3-53BD8EEC7D29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C335FB5A-C601-47B9-ACE3-53BD8EEC7D29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C335FB5A-C601-47B9-ACE3-53BD8EEC7D29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9457CDF-A269-4C6F-B4FD-E835942D7541}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9457CDF-A269-4C6F-B4FD-E835942D7541}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9457CDF-A269-4C6F-B4FD-E835942D7541}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9457CDF-A269-4C6F-B4FD-E835942D7541}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9357212B-D58F-4640-84BE-10D36B8C99F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9357212B-D58F-4640-84BE-10D36B8C99F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9357212B-D58F-4640-84BE-10D36B8C99F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9357212B-D58F-4640-84BE-10D36B8C99F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AD24676-CDAC-4A92-8200-9049BA671A02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AD24676-CDAC-4A92-8200-9049BA671A02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AD24676-CDAC-4A92-8200-9049BA671A02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AD24676-CDAC-4A92-8200-9049BA671A02}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35
 	EndGlobalSection
 EndGlobal

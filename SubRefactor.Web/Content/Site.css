@@ -59,3 +59,7 @@ ul#menu li a img { border: none; }
 .dialog-form { font-family: 'Josefin Sans', sans-serif;display: none; }
 
 .editable-quote-list { height: 400px;overflow: auto; font-family: Verdana, Tahoma, Arial, "Helvetica Neue" , Helvetica, Sans-Serif;font-size: small !important; }
+
+.register-form {width: 50%;float: left; display: inline-block; }
+.login-form { width: 50%;float: right; display: inline-block; }
+.facebook-loggin { margin-bottom: 500px;}
