@@ -1,0 +1,7 @@
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.IRepository\bin\Debug\SubRefactor.IRepository.dll
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.IRepository\bin\Debug\SubRefactor.IRepository.pdb
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.IRepository\bin\Debug\SyncSub.Model.dll
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.IRepository\bin\Debug\SyncSub.Model.pdb
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.IRepository\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.IRepository\obj\Debug\SubRefactor.IRepository.dll
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.IRepository\obj\Debug\SubRefactor.IRepository.pdb

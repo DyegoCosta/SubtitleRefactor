@@ -1,0 +1,12 @@
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Repository\bin\Debug\SubRefactor.Repository.dll
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Repository\bin\Debug\SubRefactor.Repository.pdb
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Repository\bin\Debug\EntityFramework.dll
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Repository\bin\Debug\SubRefactor.IRepository.dll
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Repository\bin\Debug\SyncSub.Model.dll
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Repository\bin\Debug\SyncSub.Model.pdb
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Repository\bin\Debug\SubRefactor.IRepository.pdb
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Repository\bin\Debug\EntityFramework.xml
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Repository\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Repository\obj\Debug\SubRefactor.Repository.dll
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Repository\obj\Debug\SubRefactor.Repository.pdb
+C:\Users\Dyego\Projetos\SubRefactor\SubRefactor.Repository\bin\Debug\EntityFramework.Migrations.dll
